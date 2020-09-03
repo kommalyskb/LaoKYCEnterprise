@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30320.27
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Portal", "Portal\Portal.csproj", "{DABEFA65-C711-41CB-8449-E37E234A01BA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portal", "Portal\Portal.csproj", "{DABEFA65-C711-41CB-8449-E37E234A01BA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{F0A2D21D-8F3E-4B6B-A92F-706B4013F331}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "Tests\Tests.csproj", "{F0A2D21D-8F3E-4B6B-A92F-706B4013F331}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Shared", "Shared\Shared.csproj", "{64C4AFDB-0C73-4392-B51D-24F724991CA6}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{F0A2D21D-8F3E-4B6B-A92F-706B4013F331}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F0A2D21D-8F3E-4B6B-A92F-706B4013F331}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F0A2D21D-8F3E-4B6B-A92F-706B4013F331}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64C4AFDB-0C73-4392-B51D-24F724991CA6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64C4AFDB-0C73-4392-B51D-24F724991CA6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64C4AFDB-0C73-4392-B51D-24F724991CA6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64C4AFDB-0C73-4392-B51D-24F724991CA6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

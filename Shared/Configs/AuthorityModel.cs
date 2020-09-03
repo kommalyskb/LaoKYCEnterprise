@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Portal.DTOs
+namespace Shared.Configs
 {
     public class AuthorityModel
     {

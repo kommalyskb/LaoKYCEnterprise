@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Portal.DTOs;
+using Shared.Configs;
 
 namespace Portal
 {
@@ -72,6 +72,9 @@ namespace Portal
                options.Scope.Add("openid");
            });
 
+            // Config services
+            services.AddCouchDBConfigService(Configuration);
+            services.AddCouchDBContextService();
 
         }
 
