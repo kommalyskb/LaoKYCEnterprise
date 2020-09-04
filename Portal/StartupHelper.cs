@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Configuration;
+﻿using CouchDBService;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Portal.Repositories;
 using Shared.Configs;
@@ -35,6 +36,12 @@ namespace Portal
         {
             // Inject Dependency
             services.AddSingleton<ICouchContext, CouchContext>();
+        }
+
+        public static void AddAPILaoKYCService(this IServiceCollection services)
+        {
+            // Inject Dependency
+            services.AddSingleton<IAPILaoKYC, APILaoKYC>();
         }
     }
 }

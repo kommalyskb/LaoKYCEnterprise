@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using Newtonsoft.Json;
+using Shared.Entities;
 
 namespace Shared.DTOs
 {
-    public class AppClientDto
+    public class AppClientDto: AppClient
     {
-        public int? Id { get; set; }
-        public string ClientId { get; set; }
-        public string ClientName { get; set; }
-        public string Description { get; set; }
+        [JsonProperty("_id")]
+        public string Id { get; set; }
+        [JsonProperty("_rev")]
+        public string Revision { get; set; }
     }
 }

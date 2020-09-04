@@ -75,6 +75,7 @@ namespace Portal
             // Config services
             services.AddCouchDBConfigService(Configuration);
             services.AddCouchDBContextService();
+            services.AddAPILaoKYCService();
 
         }
 
