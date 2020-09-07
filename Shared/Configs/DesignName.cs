@@ -12,5 +12,13 @@ namespace Shared.Configs
                 return "query";
             }
         }
+
+        public static string ApiResourceQuery
+        {
+            get
+            {
+                return "query";
+            }
+        }
     }
 }

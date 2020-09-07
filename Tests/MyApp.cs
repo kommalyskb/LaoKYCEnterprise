@@ -1,4 +1,5 @@
 ﻿using CouchDBService;
+using IdentityServer4.Models;
 using Moq;
 using Portal.Repositories;
 using Shared.Configs;
@@ -35,10 +36,10 @@ namespace Tests
                 Username = "admin"
             };
 
-            var mocking = new Mock<IAPILaoKYC>();
-            
-            apiKYC = mocking.Object;
-            
+
+            apiKYC = new APILaoKYC();
+
+
 
             myAppClient = new MyAppClient(couchContext, dBConfig, apiKYC);
         }
@@ -51,7 +52,7 @@ namespace Tests
             Assert.NotNull(result);
         }
         [Theory(DisplayName = "ສະແດງລາຍການ Apps(Clients) ທັງຫມົດທີມີ ຕາມ ຂອງ Users ທີ່ເປັນເຈົ້າຂອງ")]
-        [InlineData("1qaz2wsx3edc4rfv", 2)]
+        [InlineData("1qaz2wsx3edc4rfv", 1)]
         [InlineData("", 0)]
         public async Task ListAllClientsBelongtoUser(string userid, int? expected)
         {
@@ -61,7 +62,7 @@ namespace Tests
         }
 
         [Theory(DisplayName = "ສ້າງ App(Client) ໃຫມ່ ຕາມຂໍ້ມູນເລີ່ມຕົ້ນ ສຳເລັດ")]
-        [InlineData("demo_client", "Demo Client App", "This is demo app", "1qaz2wsx", "2020-09-03 19:18:00")]
+        [InlineData("demo_client_333", "Demo Client App", "This is demo app", "qwqe", "2020-09-03 19:18:00")]
         public async Task CreateNewClientApp(string clientid, string clientname, string description,
             string userid, string created)
         {
@@ -88,11 +89,72 @@ namespace Tests
             Assert.True(result);
         }
 
+        [Theory(DisplayName = "ລຶບ App(Client) ຕາມຂໍ້ມູນທີ່ກຳຫນົດ ສຳເລັດ")]
+        [InlineData("870cbca13cb5e6fb0f6c30564301d252", "2-097bd1da4e429d470c31f0ee5468b07e")]
+        public async Task RemoveClientApp(string id, string rev)
+        {
+            
+            var result = await myAppClient.RemoveClientApp(id, rev);
+
+            Assert.True(result);
+        }
+
         [Theory(DisplayName = "ສ້າງ App Secrets ຕາມຂໍ້ມູນທີ່ກຳຫນົດ ສຳເລັດ")]
-        public async Task CreateClientSecret()
+        [InlineData(52, "SharedSecret", "97c67283-f76c-fad5-8db0-f1d2a4f8a7af", "97c67283-f76c-fad5-8db0-f1d2a4f8a7af")]
+        public async Task CreateClientSecret(int id, string type, string description, string value)
+        {
+            string hash = value.Sha256();
+            DateTime? expired = DateTime.Now.AddMonths(1);
+
+            var req = new ClientSecretDto(type, description, hash, expired);
+
+            var result = await apiKYC.CreateClientSecret(id, req);
+
+            Assert.True(result);
+        }
+
+        [Theory(DisplayName = "ສ້າງ App Properties ຕາມຂໍ້ມູນທີ່ກຳຫນົດ ສຳເລັດ")]
+        [InlineData(52, "test", "this is test")]
+        public async Task CreateClientProperty(int id, string key, string value)
         {
 
+            var req = new ClientPropertyApiDto(0, key, value);
+
+            var result = await apiKYC.CreateClientProperty(id, req);
+
+            Assert.True(result);
         }
+
+        [Theory(DisplayName = "ສ້າງ App Claims ຕາມຂໍ້ມູນທີ່ກຳຫນົດ ສຳເລັດ")]
+        [InlineData(52, "test_claim", "this is test")]
+        public async Task CreateClientClaim(int id, string type, string value)
+        {
+
+            var req = new ClientClaimApiDto(0, type, value);
+
+            var result = await apiKYC.CreateClientClaim(id, req);
+
+            Assert.True(result);
+        }
+
+        [Theory(DisplayName = "ລຶບ App Secrets ຕາມຂໍ້ມູນທີ່ກຳຫນົດ ສຳເລັດ")]
+        [InlineData(2)]
+        public async Task DeleteClientClaim(int id)
+        {
+            var result = await apiKYC.RemoveClientClaim(id);
+
+            Assert.True(result);
+        }
+
+        [Theory(DisplayName = "ລຶບ App Properties ຕາມຂໍ້ມູນທີ່ກຳຫນົດ ສຳເລັດ")]
+        [InlineData(3)]
+        public async Task DeleteClientProperty(int id)
+        {
+            var result = await apiKYC.RemoveClientProperty(id);
+
+            Assert.True(result);
+        }
+
 
     }
     public class UpdateClientDtoTest : IEnumerable<object[]>
@@ -104,18 +166,20 @@ namespace Tests
                 {
                   ClientApiDto = new ClientApiDto
                   {
-                      
+                      ClientId = "update_client_33",
+                      ClientName = "Update Client App",
+                      Id = 51
                   },
                   AppClientDto = new AppClientDto
                   {
-                      AppID = 10,
-                      ClientId = "update_client",
+                      AppID = 51,
+                      ClientId = "update_client_33",
                       ClientName = "Update Client App",
                       Description = "This is test update client app",
                       Created = "2020-09-04 00:36:00",
-                      Id = "870cbca13cb5e6fb0f6c305643005662",
-                      Revision = "2-841561339a4a315501e2e8424b2f04ad",
-                      UserID = "1234qwer"
+                      Id = "870cbca13cb5e6fb0f6c30564301d252",
+                      Revision = "1-2dcbedb146703e4948f46ec08a7890bb",
+                      UserID = "qwqe"
                   }
                 }
             };

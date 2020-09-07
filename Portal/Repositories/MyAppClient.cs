@@ -84,51 +84,87 @@ namespace Portal.Repositories
         {
             if (appClient.ClientId == string.Empty)
             {
-                return await Task.FromResult(false);
+                return false;
             }
             if (appClient.UserID == string.Empty)
             {
-                return await Task.FromResult(false);
+                return false;
             }
 
-            var id = await apiLao.CreateClient(new ClientApiDto());
+            var req = new ClientApiDto()
+            { ClientId = appClient.ClientId, ClientName = appClient.ClientName, Description = appClient.Description };
 
-            appClient.AppID = id;
+            var res = await apiLao.CreateClient(req);
 
-            var result = await couchContext.InsertAsync<AppClient>(couchDbHelper, appClient);
+            appClient.AppID = req.Id;
 
-            return result.IsSuccess;
+            if (res)
+            {
+                var result = await couchContext.InsertAsync<AppClient>(couchDbHelper, appClient);
+
+                return result.IsSuccess;
+            }
+            return false;
+
         }
 
         public async Task<bool> UpdateAppClient(ClientApiDto clientApiDto, AppClientDto appClientDto)
         {
             if (clientApiDto is null)
             {
-                return await Task.FromResult(false);
+                return false;
             }
             if (appClientDto is null)
             {
-                return await Task.FromResult(false);
+                return false;
             }
             if (appClientDto.Id == string.Empty)
             {
-                return await Task.FromResult(false);
+                return false;
             }
             if (appClientDto.Revision == string.Empty)
             {
-                return await Task.FromResult(false);
+                return false;
             }
 
             var res = await apiLao.UpdateClient(clientApiDto);
 
-            //if (res)
-            //{
-            //    var result = await couchContext.EditAsync<AppClientDto>(couchDbHelper, appClientDto);
-            //    return result.IsSuccess;
-            //}
-            //return false;
-            var result = await couchContext.EditAsync<AppClientDto>(couchDbHelper, appClientDto);
-            return result.IsSuccess;
+            if (res)
+            {
+                var result = await couchContext.EditAsync<AppClientDto>(couchDbHelper, appClientDto);
+                return result.IsSuccess;
+            }
+            return false;
+            //var result = await couchContext.EditAsync<AppClientDto>(couchDbHelper, appClientDto);
+            //return result.IsSuccess;
+        }
+
+        public async Task<bool> RemoveClientApp(string id, string rev)
+        {
+            if (id == string.Empty)
+            {
+                return false;
+            }
+
+            // Get App ID from couchdb
+            var appRes = await couchContext.GetAsync<AppClientDto>(couchDbHelper, id);
+            if (!appRes.IsSuccess)
+            {
+                return false;
+            }
+
+            var res = await apiLao.RemoveClient(appRes.Content.AppID);
+
+            if (res)
+            {
+                var result = await couchContext.DeleteAsync(couchDbHelper, id, rev);
+                return result.IsSuccess;
+            }
+            return false;
+
+            //var result = await couchContext.DeleteAsync(couchDbHelper, id, rev);
+
+            //return result.IsSuccess;
         }
     }
 }

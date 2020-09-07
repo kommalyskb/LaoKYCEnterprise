@@ -13,6 +13,6 @@ namespace Shared.Repositories
         Task<List<AppClientDto>> ListAll();
         Task<List<AppClientDto>> ListAll(string userId);
         Task<bool> UpdateAppClient(ClientApiDto clientApiDto, AppClientDto appClientDto);
-        Task<bool> CreateAppSecret();
+        Task<bool> RemoveClientApp(string id, string rev);
     }
 }
