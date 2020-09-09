@@ -43,5 +43,16 @@ namespace Portal
             // Inject Dependency
             services.AddSingleton<IAPILaoKYC, APILaoKYC>();
         }
+
+        public static void AddMyAppService(this IServiceCollection services)
+        {
+            // Inject Dependency
+            services.AddSingleton<IMyAppClient, MyAppClient>();
+        }
+        public static void AddApiResourceService(this IServiceCollection services)
+        {
+            // Inject Dependency
+            services.AddSingleton<IMyAPIResource, MyAPIResource>();
+        }
     }
 }
