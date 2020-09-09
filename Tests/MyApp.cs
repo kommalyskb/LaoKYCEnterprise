@@ -52,11 +52,11 @@ namespace Tests
             Assert.NotNull(result);
         }
         [Theory(DisplayName = "ສະແດງລາຍການ Apps(Clients) ທັງຫມົດທີມີ ຕາມ ຂອງ Users ທີ່ເປັນເຈົ້າຂອງ")]
-        [InlineData("1qaz2wsx3edc4rfv", 1)]
-        [InlineData("", 0)]
-        public async Task ListAllClientsBelongtoUser(string userid, int? expected)
+        [InlineData("1qaz2wsx3edc4rfv", 1, 20, 0)]
+        [InlineData("", 0, 20, 0)]
+        public async Task ListAllClientsBelongtoUser(string userid, int? expected, int? limit, int? page)
         {
-            var result = await myAppClient.ListAll(userid);
+            var result = await myAppClient.ListAll(userid, limit, page);
 
             Assert.Equal(expected, result.Count);
         }

@@ -48,10 +48,10 @@ namespace Tests
             Assert.NotNull(result);
         }
         [Theory(DisplayName = "ສະແດງລາຍການ API(API Resources) ທັງຫມົດທີມີ ຕາມ ຂອງ Users ທີ່ເປັນເຈົ້າຂອງ")]
-        [InlineData("1qaz2wsx")]
-        public async Task ListAllResourceBelongtoUser(string userid)
+        [InlineData("1qaz2wsx", 20, 0)]
+        public async Task ListAllResourceBelongtoUser(string userid, int? limit, int? page)
         {
-            var result = await myAPIResouce.ListAll(userid);
+            var result = await myAPIResouce.ListAll(userid, limit, page);
 
             Assert.NotNull(result);
         }

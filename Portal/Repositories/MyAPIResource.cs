@@ -76,15 +76,16 @@ namespace Portal.Repositories
             }).ToList();
         }
 
-        public async Task<List<APIResourceDto>> ListAll(string userId)
+        public async Task<List<APIResourceDto>> ListAll(string userId, int? limit, int? page)
         {
+            int skip = limit.Value * page.Value;
             var result = await couchContext.ViewQueryAsync<APIResourceDto>(
                     couchDBHelper: couchDbHelper,
                     designName: DesignName.ApiResourceQuery,
                     viewName: IndexName.ApiResourceQuery_List,
                     userId,
-                    20,
-                    0,
+                    limit.Value,
+                    skip,
                     false,
                     false
                 );

@@ -10,7 +10,7 @@ namespace Shared.Repositories
     public interface IMyAPIResource
     {
         Task<List<APIResourceDto>> ListAll();
-        Task<List<APIResourceDto>> ListAll(string userId);
+        Task<List<APIResourceDto>> ListAll(string userId, int? limit, int? page);
         Task<bool> CreateResource(APIResource req);
         Task<bool> UpdateResource(ApiResourceApiDto apiResourceApiDto, APIResourceDto aPIResource);
         Task<bool> RemoveResource(string id, string rev);

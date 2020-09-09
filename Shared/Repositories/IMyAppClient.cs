@@ -11,7 +11,7 @@ namespace Shared.Repositories
     {
         Task<bool> CreateAppClient(AppClient appClient);
         Task<List<AppClientDto>> ListAll();
-        Task<List<AppClientDto>> ListAll(string userId);
+        Task<List<AppClientDto>> ListAll(string userId, int? limit, int? page);
         Task<bool> UpdateAppClient(ClientApiDto clientApiDto, AppClientDto appClientDto);
         Task<bool> RemoveClientApp(string id, string rev);
     }
