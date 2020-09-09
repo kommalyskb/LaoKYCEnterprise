@@ -96,10 +96,9 @@ namespace Portal.Repositories
 
             var res = await apiLao.CreateClient(req);
 
-            appClient.AppID = req.Id;
-
             if (res)
             {
+                appClient.AppID = req.Id;
                 var result = await couchContext.InsertAsync<AppClient>(couchDbHelper, appClient);
 
                 return result.IsSuccess;

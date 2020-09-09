@@ -13,5 +13,6 @@ namespace Shared.Configs
         public static string UserName = "admin";
         public static string Password = "@Admin1qaz2wsx@Cz";
         public static string ClientUri = "https://api.oneid.sbg.la/api/Clients";
+        public static string ResourceUri = "https://api.oneid.sbg.la/api/ApiResources";
     }
 }

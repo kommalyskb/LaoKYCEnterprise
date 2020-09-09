@@ -4,17 +4,17 @@ using System.Text;
 
 namespace Shared.DTOs
 {
-    public class ClientPropertyApiDto
+    public class ApiResourcePropertyApiDto
     {
-        public ClientPropertyApiDto(int id, string key, string value)
-        {
-            this.Id = id;
-            this.Key = key;
-            this.Value = value;
-        }
-        public ClientPropertyApiDto()
+        public ApiResourcePropertyApiDto()
         {
 
+        }
+        public ApiResourcePropertyApiDto(int id, string key, string value)
+        {
+            Key = key;
+            Value = value;
+            Id = id;
         }
         public int Id { get; set; }
         public string Key { get; set; }

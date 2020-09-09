@@ -12,6 +12,8 @@ namespace Shared.Entities
 
         [JsonProperty("resname")]
         public string ResName { get; set; } // This is Resource name from Identity Server
+        [JsonProperty("display")]
+        public string DisplayName { get; set; }
 
         [JsonProperty("description")]
         public string Description { get; set; } // This is Description from Identity Server

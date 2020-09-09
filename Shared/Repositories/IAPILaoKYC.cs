@@ -17,5 +17,14 @@ namespace Shared.Repositories
         Task<bool> RemoveClientSecret(int? id);
         Task<bool> RemoveClientProperty(int? id);
         Task<bool> RemoveClientClaim(int? id);
+        Task<bool> CreateApiResource(ApiResourceApiDto resourceApiDto);
+        Task<bool> UpdateResource(ApiResourceApiDto resourceApiDto);
+        Task<bool> RemoveResource(int? id);
+        Task<bool> CreateResourceSecret(int? id, ApiSecretApiDto secret);
+        Task<bool> CreateResourceProperty(int? id, ApiResourcePropertyApiDto property);
+        Task<bool> CreateResourceScope(int? id, ApiScopeApiDto scope);
+        Task<bool> RemoveResourceSecret(int? id);
+        Task<bool> RemoveResourceProperty(int? id);
+        Task<bool> RemoveResourceScope(int? id, int? scopeid);
     }
 }

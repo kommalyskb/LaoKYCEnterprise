@@ -1,4 +1,5 @@
 ﻿using Shared.DTOs;
+using Shared.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,5 +11,8 @@ namespace Shared.Repositories
     {
         Task<List<APIResourceDto>> ListAll();
         Task<List<APIResourceDto>> ListAll(string userId);
+        Task<bool> CreateResource(APIResource req);
+        Task<bool> UpdateResource(ApiResourceApiDto apiResourceApiDto, APIResourceDto aPIResource);
+        Task<bool> RemoveResource(string id, string rev);
     }
 }
