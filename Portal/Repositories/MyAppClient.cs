@@ -50,20 +50,21 @@ namespace Portal.Repositories
                 UserID = x.Value.UserID
             }).ToList();
         }
-        public async Task<List<AppClientDto>> ListAll(string userId)
+        public async Task<List<AppClientDto>> ListAll(string userId, int? limit, int? page)
         {
             if (userId == string.Empty)
             {
                 return await Task.FromResult(new List<AppClientDto>());
             }
 
+            int skip = limit.Value * page.Value;
             var result = await couchContext.ViewQueryAsync<AppClientDto>(
                     couchDBHelper: couchDbHelper,
                     designName: DesignName.AppClientQuery,
                     viewName: IndexName.AppClientQuery_List,
                     userId,
-                    20,
-                    0,
+                    limit.Value,
+                    skip,// skip = page * limit
                     false,
                     false
                 );
@@ -96,10 +97,9 @@ namespace Portal.Repositories
 
             var res = await apiLao.CreateClient(req);
 
-            appClient.AppID = req.Id;
-
             if (res)
             {
+                appClient.AppID = req.Id;
                 var result = await couchContext.InsertAsync<AppClient>(couchDbHelper, appClient);
 
                 return result.IsSuccess;

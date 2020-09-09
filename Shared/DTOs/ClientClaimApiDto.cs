@@ -12,6 +12,10 @@ namespace Shared.DTOs
             this.Type = type;
             this.Value = value;
         }
+        public ClientClaimApiDto()
+        {
+
+        }
         public int Id { get; set; }
 
         public string Type { get; set; }
