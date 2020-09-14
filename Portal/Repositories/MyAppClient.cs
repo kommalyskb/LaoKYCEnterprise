@@ -38,17 +38,26 @@ namespace Portal.Repositories
                     false,
                     false
                 );
-            return result.Rows.Select(x => new AppClientDto()
+
+            if (result.Rows != null)
             {
-                AppID = x.Value.AppID,
-                ClientId = x.Value.ClientId,
-                ClientName = x.Value.ClientName,
-                Created = x.Value.Created,
-                Description = x.Value.Description,
-                Id = x.Id,
-                Revision = x.Value.Revision,
-                UserID = x.Value.UserID
-            }).ToList();
+                return result.Rows.Select(x => new AppClientDto()
+                {
+                    AppID = x.Value.AppID,
+                    ClientId = x.Value.ClientId,
+                    ClientName = x.Value.ClientName,
+                    Created = x.Value.Created,
+                    Description = x.Value.Description,
+                    Id = x.Id,
+                    Revision = x.Value.Revision,
+                    UserID = x.Value.UserID
+                }).ToList();
+            }
+            else
+            {
+                return new List<AppClientDto>();
+            }
+       
         }
         public async Task<List<AppClientDto>> ListAll(string userId, int? limit, int? page)
         {
@@ -68,17 +77,25 @@ namespace Portal.Repositories
                     false,
                     false
                 );
-            return result.Rows.Select(x => new AppClientDto()
+            if (result.Rows != null)
             {
-                AppID = x.Value.AppID,
-                ClientId = x.Value.ClientId,
-                ClientName = x.Value.ClientName,
-                Created = x.Value.Created,
-                Description = x.Value.Description,
-                Id = x.Id,
-                Revision = x.Value.Revision,
-                UserID = x.Value.UserID
-            }).ToList();
+                return result.Rows.Select(x => new AppClientDto()
+                {
+                    AppID = x.Value.AppID,
+                    ClientId = x.Value.ClientId,
+                    ClientName = x.Value.ClientName,
+                    Created = x.Value.Created,
+                    Description = x.Value.Description,
+                    Id = x.Id,
+                    Revision = x.Value.Revision,
+                    UserID = x.Value.UserID
+                }).ToList();
+            }
+            else
+            {
+                return new List<AppClientDto>();
+            }
+           
         }
 
         public async Task<bool> CreateAppClient(AppClient appClient)
