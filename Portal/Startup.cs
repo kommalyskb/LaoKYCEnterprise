@@ -27,7 +27,10 @@ namespace Portal
             services.AddControllersWithViews();
 
             services.AddOptions();
-
+#if DEBUG
+            // Enable razor runtime compilation
+            services.AddRazorPages().AddRazorRuntimeCompilation();
+#endif
             services.AddAuthentication(options =>
             {
                 options.DefaultScheme = "Cookies";
@@ -79,6 +82,10 @@ namespace Portal
             services.AddMyAppService();
             services.AddApiResourceService();
 
+            // Read configurations
+            var dbConfig = new DBConfig();
+            Configuration.GetSection("DBServer").Bind(dbConfig);
+            services.AddSingleton(dbConfig);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

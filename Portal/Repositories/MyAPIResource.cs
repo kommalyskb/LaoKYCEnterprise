@@ -64,16 +64,23 @@ namespace Portal.Repositories
                     false,
                     false
                 );
-            return result.Rows.Select(x => new APIResourceDto()
+            if (result.Rows != null)
             {
-                ResID = x.Value.ResID,
-                ResName = x.Value.ResName,
-                Created = x.Value.Created,
-                Description = x.Value.Description,
-                Id = x.Id,
-                Revision = x.Value.Revision,
-                UserID = x.Value.UserID
-            }).ToList();
+                return result.Rows.Select(x => new APIResourceDto()
+                {
+                    ResID = x.Value.ResID,
+                    ResName = x.Value.ResName,
+                    Created = x.Value.Created,
+                    Description = x.Value.Description,
+                    Id = x.Id,
+                    Revision = x.Value.Revision,
+                    UserID = x.Value.UserID
+                }).ToList();
+            }
+            else
+            {
+                return new List<APIResourceDto>();
+            }
         }
 
         public async Task<List<APIResourceDto>> ListAll(string userId, int? limit, int? page)
@@ -89,16 +96,24 @@ namespace Portal.Repositories
                     false,
                     false
                 );
-            return result.Rows.Select(x => new APIResourceDto()
+            if (result.Rows != null)
             {
-                ResID = x.Value.ResID,
-                ResName = x.Value.ResName,
-                Created = x.Value.Created,
-                Description = x.Value.Description,
-                Id = x.Id,
-                Revision = x.Value.Revision,
-                UserID = x.Value.UserID
-            }).ToList();
+                return result.Rows.Select(x => new APIResourceDto()
+                {
+                    ResID = x.Value.ResID,
+                    ResName = x.Value.ResName,
+                    Created = x.Value.Created,
+                    Description = x.Value.Description,
+                    Id = x.Id,
+                    Revision = x.Value.Revision,
+                    UserID = x.Value.UserID
+                }).ToList();
+            }
+            else
+            {
+                return new List<APIResourceDto>();
+            }
+            
         }
 
         public async Task<bool> RemoveResource(string id, string rev)

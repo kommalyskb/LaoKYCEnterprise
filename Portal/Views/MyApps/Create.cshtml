@@ -1,0 +1,241 @@
+﻿
+@{
+    ViewData["Title"] = "Create app";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!--begin::Card-->
+<div class="card card-custom card-sticky" id="kt_page_sticky_card">
+    <div class="card-header">
+        <div class="card-title">
+            <h3 class="card-label">
+                Create app <i class="mr-2"></i>
+                <small class=""></small>
+            </h3>
+        </div>
+        <div class="card-toolbar">
+            <a href="#" class="btn btn-light-primary font-weight-bolder mr-2">
+                <i class="ki ki-long-arrow-back icon-sm"></i>
+                Back
+            </a>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary font-weight-bolder">
+                    <i class="ki ki-check icon-sm"></i>
+                    Save Form
+                </button>
+              
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <!--begin::Form-->
+        <form class="form" id="kt_form">
+            <div class="row">
+                <div class="col-xl-2"></div>
+                <div class="col-xl-8">
+                    <div class="my-5">
+                        <h3 class="text-dark font-weight-bold mb-10">Name:</h3>
+                        <div class="form-group row">
+                            <label class="col-3">App ID:</label>
+                            <div class="col-9">
+                                <input class="form-control form-control-solid" type="text" value="" />
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <label class="col-3">App Name:</label>
+                            <div class="col-9">
+                                <input class="form-control form-control-solid" type="text" value="" />
+                            </div>
+                        </div>
+                       
+                    </div>
+                    <div class="separator separator-dashed my-10"></div>
+                    <div class="my-5">
+                        <h3 class=" text-dark font-weight-bold mb-10">Select platform:</h3>
+                        <div class="col-lg-6 col-sm-12">
+                            <label class="kt-option">
+                                <span class="kt-option__control">
+                                    <span class="kt-radio kt-radio--bold kt-radio--brand">
+                                        <input type="radio" name="ClientType" value="0" />
+                                        <span></span>
+                                    </span>
+                                </span>
+                                <span class="kt-option__label">
+                                    <span class="kt-option__head">
+                                        <span class="kt-option__title">
+                                            Empty - Default
+                                        </span>
+                                        <span class="kt-option__focus">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--success kt-svg-icon--lg">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <path d="M3.5,21 L20.5,21 C21.3284271,21 22,20.3284271 22,19.5 L22,8.5 C22,7.67157288 21.3284271,7 20.5,7 L10,7 L7.43933983,4.43933983 C7.15803526,4.15803526 6.77650439,4 6.37867966,4 L3.5,4 C2.67157288,4 2,4.67157288 2,5.5 L2,19.5 C2,20.3284271 2.67157288,21 3.5,21 Z" fill="#000000" opacity="0.3" />
+                                                    <path d="M10.875,16.75 C10.6354167,16.75 10.3958333,16.6541667 10.2041667,16.4625 L8.2875,14.5458333 C7.90416667,14.1625 7.90416667,13.5875 8.2875,13.2041667 C8.67083333,12.8208333 9.29375,12.8208333 9.62916667,13.2041667 L10.875,14.45 L14.0375,11.2875 C14.4208333,10.9041667 14.9958333,10.9041667 15.3791667,11.2875 C15.7625,11.6708333 15.7625,12.2458333 15.3791667,12.6291667 L11.5458333,16.4625 C11.3541667,16.6541667 11.1145833,16.75 10.875,16.75 Z" fill="#000000" />
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span class="kt-option__body">
+                                        .
+                                    </span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <label class="kt-option">
+                                <span class="kt-option__control">
+                                    <span class="kt-radio kt-radio--bold kt-radio--brand">
+                                        <input type="radio" name="ClientType" value="1" />
+                                        <span></span>
+                                    </span>
+                                </span>
+                                <span class="kt-option__label">
+                                    <span class="kt-option__head">
+                                        <span class="kt-option__title">
+                                            Web Application - Server side
+                                        </span>
+                                        <span class="kt-option__focus">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--success kt-svg-icon--lg">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <path d="M6,8 L6,16 L18,16 L18,8 L6,8 Z M20,16 L21.381966,16 C21.7607381,16 22.1070012,16.2140024 22.2763932,16.5527864 L22.5,17 C22.6706654,17.3413307 22.5323138,17.7563856 22.190983,17.927051 C22.0950363,17.9750244 21.9892377,18 21.881966,18 L2.11803399,18 C1.73641461,18 1.42705098,17.6906364 1.42705098,17.309017 C1.42705098,17.2017453 1.45202663,17.0959467 1.5,17 L1.7236068,16.5527864 C1.89299881,16.2140024 2.23926193,16 2.61803399,16 L4,16 L4,8 C4,6.8954305 4.8954305,6 6,6 L18,6 C19.1045695,6 20,6.8954305 20,8 L20,16 Z" fill="#000000" fill-rule="nonzero" />
+                                                    <polygon fill="#000000" opacity="0.3" points="6 8 6 16 18 16 18 8" />
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span class="kt-option__body">
+                                        Hybrid flow
+                                    </span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <label class="kt-option">
+                                <span class="kt-option__control">
+                                    <span class="kt-radio kt-radio--bold kt-radio--brand">
+                                        <input type="radio" name="ClientType" value="2" />
+                                        <span></span>
+                                    </span>
+                                </span>
+                                <span class="kt-option__label">
+                                    <span class="kt-option__head">
+                                        <span class="kt-option__title">
+                                            Single Page Application - Javascript
+                                        </span>
+                                        <span class="kt-option__focus">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--success kt-svg-icon--lg">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <path d="M5,5 L5,16 L19,16 L19,5 L5,5 Z M5,3 L19,3 C20.4201608,3 21,3.7163444 21,4.6 L21,17.4 C21,18.2836556 20.4201608,19 19,19 L5,19 C3.57983921,19 3,18.2836556 3,17.4 L3,4.6 C3,3.7163444 3.57983921,3 5,3 Z M12,18 C12.2761424,18 12.5,17.7761424 12.5,17.5 C12.5,17.2238576 12.2761424,17 12,17 C11.7238576,17 11.5,17.2238576 11.5,17.5 C11.5,17.7761424 11.7238576,18 12,18 Z" fill="#000000" fill-rule="nonzero" />
+                                                    <polygon fill="#000000" opacity="0.3" points="5 5 5 16 19 16 19 5" />
+                                                    <rect fill="#000000" opacity="0.3" x="10" y="20" width="4" height="1" rx="0.5" />
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span class="kt-option__body">
+                                        Authorization Code Flow with PKCE
+                                    </span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <label class="kt-option">
+                                <span class="kt-option__control">
+                                    <span class="kt-radio kt-radio--bold kt-radio--brand">
+                                        <input type="radio" name="ClientType" value="5" />
+                                        <span></span>
+                                    </span>
+                                </span>
+                                <span class="kt-option__label">
+                                    <span class="kt-option__head">
+                                        <span class="kt-option__title">
+                                            TV and Limited-Input Device Application
+                                        </span>
+                                        <span class="kt-option__focus">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--success kt-svg-icon--lg">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <path d="M3,5 L21,5 C21.5522847,5 22,5.44771525 22,6 L22,17 C22,17.5522847 21.5522847,18 21,18 L3,18 C2.44771525,18 2,17.5522847 2,17 L2,6 C2,5.44771525 2.44771525,5 3,5 Z M9.632,10.066 L11.032,10.066 L11.032,9.044 L7.035,9.044 L7.035,10.066 L8.435,10.066 L8.435,14 L9.632,14 L9.632,10.066 Z M14.935,14 L16.846,9.044 L15.523,9.044 L14.382,12.558 L14.354,12.558 L13.206,9.044 L11.862,9.044 L13.738,14 L14.935,14 Z" fill="#000000" />
+                                                    <rect fill="#000000" opacity="0.3" x="3" y="19" width="18" height="1" rx="0.5" />
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span class="kt-option__body">
+                                        Device flow
+                                    </span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <label class="kt-option">
+                                <span class="kt-option__control">
+                                    <span class="kt-radio kt-radio--bold kt-radio--brand">
+                                        <input type="radio" name="ClientType" value="3" />
+                                        <span></span>
+                                    </span>
+                                </span>
+                                <span class="kt-option__label">
+                                    <span class="kt-option__head">
+                                        <span class="kt-option__title">
+                                            Native Application - Mobile/Desktop
+                                        </span>
+                                        <span class="kt-option__focus">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--success kt-svg-icon--lg">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <path d="M7.13888889,4 L7.13888889,19 L16.8611111,19 L16.8611111,4 L7.13888889,4 Z M7.83333333,1 L16.1666667,1 C17.5729473,1 18.25,1.98121694 18.25,3.5 L18.25,20.5 C18.25,22.0187831 17.5729473,23 16.1666667,23 L7.83333333,23 C6.42705272,23 5.75,22.0187831 5.75,20.5 L5.75,3.5 C5.75,1.98121694 6.42705272,1 7.83333333,1 Z" fill="#000000" fill-rule="nonzero" />
+                                                    <polygon fill="#000000" opacity="0.3" points="7 4 7 19 17 19 17 4" />
+                                                    <circle fill="#000000" cx="12" cy="21" r="1" />
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span class="kt-option__body">
+                                        Hybrid flow
+                                    </span>
+                                </span>
+                            </label>
+                        </div>
+                        <div class="col-lg-6 col-sm-12">
+                            <label class="kt-option">
+                                <span class="kt-option__control">
+                                    <span class="kt-radio kt-radio--bold kt-radio--brand">
+                                        <input type="radio" name="ClientType" value="4" />
+                                        <span></span>
+                                    </span>
+                                </span>
+                                <span class="kt-option__label">
+                                    <span class="kt-option__head">
+                                        <span class="kt-option__title">
+                                            Machine/Robot
+                                        </span>
+                                        <span class="kt-option__focus">
+                                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1" class="kt-svg-icon kt-svg-icon--success kt-svg-icon--lg">
+                                                <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                                    <rect x="0" y="0" width="24" height="24" />
+                                                    <path d="M5,2 L19,2 C20.1045695,2 21,2.8954305 21,4 L21,6 C21,7.1045695 20.1045695,8 19,8 L5,8 C3.8954305,8 3,7.1045695 3,6 L3,4 C3,2.8954305 3.8954305,2 5,2 Z M11,4 C10.4477153,4 10,4.44771525 10,5 C10,5.55228475 10.4477153,6 11,6 L16,6 C16.5522847,6 17,5.55228475 17,5 C17,4.44771525 16.5522847,4 16,4 L11,4 Z M7,6 C7.55228475,6 8,5.55228475 8,5 C8,4.44771525 7.55228475,4 7,4 C6.44771525,4 6,4.44771525 6,5 C6,5.55228475 6.44771525,6 7,6 Z" fill="#000000" opacity="0.3" />
+                                                    <path d="M5,9 L19,9 C20.1045695,9 21,9.8954305 21,11 L21,13 C21,14.1045695 20.1045695,15 19,15 L5,15 C3.8954305,15 3,14.1045695 3,13 L3,11 C3,9.8954305 3.8954305,9 5,9 Z M11,11 C10.4477153,11 10,11.4477153 10,12 C10,12.5522847 10.4477153,13 11,13 L16,13 C16.5522847,13 17,12.5522847 17,12 C17,11.4477153 16.5522847,11 16,11 L11,11 Z M7,13 C7.55228475,13 8,12.5522847 8,12 C8,11.4477153 7.55228475,11 7,11 C6.44771525,11 6,11.4477153 6,12 C6,12.5522847 6.44771525,13 7,13 Z" fill="#000000" />
+                                                    <path d="M5,16 L19,16 C20.1045695,16 21,16.8954305 21,18 L21,20 C21,21.1045695 20.1045695,22 19,22 L5,22 C3.8954305,22 3,21.1045695 3,20 L3,18 C3,16.8954305 3.8954305,16 5,16 Z M11,18 C10.4477153,18 10,18.4477153 10,19 C10,19.5522847 10.4477153,20 11,20 L16,20 C16.5522847,20 17,19.5522847 17,19 C17,18.4477153 16.5522847,18 16,18 L11,18 Z M7,20 C7.55228475,20 8,19.5522847 8,19 C8,18.4477153 7.55228475,18 7,18 C6.44771525,18 6,18.4477153 6,19 C6,19.5522847 6.44771525,20 7,20 Z" fill="#000000" />
+                                                </g>
+                                            </svg>
+                                        </span>
+                                    </span>
+                                    <span class="kt-option__body">
+                                        Resource Owner Password and Client Credentials flow
+                                    </span>
+                                </span>
+                            </label>
+                        </div>
+                       
+                    </div>
+                </div>
+                <div class="col-xl-2"></div>
+            </div>
+        </form>
+        <!--end::Form-->
+    </div>
+</div>
+<!--end::Card-->
