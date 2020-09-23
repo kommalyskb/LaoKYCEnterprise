@@ -287,7 +287,7 @@
             <!--begin::Header-->
             <div class="d-flex align-items-center mt-5">
                 <div class="symbol symbol-100 mr-5">
-                    <div class="symbol-label" style="background-image:url('assets/media/users/300_21.jpg')"></div>
+                    @*<div class="symbol-label" style="background-image:url('assets/media/users/300_21.jpg')"></div>*@
                     <i class="symbol-badge bg-success"></i>
                 </div>
                 <div class="d-flex flex-column">
@@ -623,6 +623,47 @@
     <script src="~/assets/plugins/custom/prismjs/prismjs.bundle.js"></script>
     <script src="~/assets/js/scripts.bundle.js"></script>
     <!--end::Global Theme Bundle-->
+    <!-- Overlay -->
+    <script src="~/js/loadingoverlay.min.js"></script>
+    <script>
+        function Loading(element) {
+            $(element).LoadingOverlay("show", {
+                background: "rgba(216, 219, 221, 0.8)",
+                image: "",
+                fontawesome: "spinner spinner-primary spinner-lg mr-15",
+                fontawesomeColor: "#ffffff"
+            });
+        }
+        function CompleteLoad(element) {
+            $(element).LoadingOverlay("hide", true);
+        }
+
+        function notify(content,type) {
+            var notify = $.notify(content, {
+                type: type,
+                allow_dismiss: true,
+                newest_on_top: true,
+                mouse_over: true,
+                spacing: 10,
+                timer: $('#kt_notify_timer').val(),
+                placement: {
+                    from: 'top',
+                    align: 'right'
+                },
+                offset: {
+                    x: 30,
+                    y: 30
+                },
+                delay: 1000,
+                z_index: 10000,
+                animate: {
+                    enter: 'animate__animated animate__pulse',
+                    exit: 'animate__animated animate__pulse'
+                }
+            });
+        }
+    </script>
+    <!-- End Overlay -->
     @RenderSection("Scripts", required: false)
 </body>
 </html>

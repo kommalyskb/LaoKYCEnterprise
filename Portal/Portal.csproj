@@ -7,6 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="Codecamp.CouchDBService" Version="1.0.0" />
+    <PackageReference Include="DotNetOpenAuth.InfoCard.UI" Version="4.3.4.13329" />
     <PackageReference Include="IdentityModel" Version="4.3.1" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.OpenIdConnect" Version="3.1.7" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.8" />
