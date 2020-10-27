@@ -1,0 +1,135 @@
+﻿@model Shared.Entities.APIResource
+@{
+    ViewData["Title"] = "Create API";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<!--begin::Card-->
+<div class="card card-custom card-sticky" id="kt_page_sticky_card">
+    <div class="card-header">
+        <div class="card-title">
+            <h3 class="card-label">
+                Create app <i class="mr-2"></i>
+                <small class=""></small>
+            </h3>
+        </div>
+        <div class="card-toolbar">
+            <a asp-action="index" class="btn btn-light-primary font-weight-bolder mr-2">
+                <i class="ki ki-long-arrow-back icon-sm"></i>
+                Back
+            </a>
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary font-weight-bolder" id="btn-submit">
+                    <i class="ki ki-check icon-sm"></i>
+                    Save Form
+                </button>
+
+            </div>
+        </div>
+    </div>
+    <div class="card-body">
+        <!--begin::Form-->
+        <form class="form" id="form-save" data-ajax="true" data-ajax-url="Create" data-ajax-method="post" data-ajax-begin="begin" data-ajax-complete="completed" data-ajax-failure="failed">
+            <div class="row">
+                <div class="col-xl-2"></div>
+                <div class="col-xl-8">
+                    <div class="my-5">
+                        <div class="form-group">
+                            <label class="font-size-h6 font-weight-bolder text-dark">Client ID</label>
+                            <input type="text" class="form-control h-auto py-7 px-6 border-0 rounded-lg font-size-h6 form-control-solid" placeholder="API ID" asp-for="ResID" value="@Guid.NewGuid().ToString()" />
+                        </div>
+                        <div class="form-group">
+                            <label class="font-size-h6 font-weight-bolder text-dark">Client Name</label>
+                            <input type="text" class="form-control h-auto py-7 px-6 border-0 rounded-lg font-size-h6 form-control-solid" placeholder="API's name" asp-for="ResName" value="" />
+                        </div>
+                        <div class="form-group">
+                            <label class="font-size-h6 font-weight-bolder text-dark">Description</label>
+                            <input type="text" class="form-control h-auto py-7 px-6 border-0 rounded-lg font-size-h6 form-control-solid" placeholder="Description" asp-for="Description" value="" />
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-2"></div>
+            </div>
+        </form>
+        <!--end::Form-->
+    </div>
+</div>
+<!--end::Card-->
+
+@section Scripts{
+    <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
+        $(document).on('click', '#btn-submit', function () {
+            let count = 0;
+            var content = {};
+
+            if ($('#ClientId').val() == '') {
+                content.message = 'Client Id is required. ';
+                notify(content, 'warning');
+                count++;
+            }
+
+            if ($('#ClientName').val() == '') {
+                content.message = 'Client name is required. ';
+                notify(content, 'warning');
+                count++;
+            }
+
+            if ($('#Description').val() == '') {
+                content.message = 'Description is required. ';
+                notify(content, 'warning');
+                count++;
+            }
+            if (count > 0) {
+                return false;
+            } else {
+                $('#form-save').submit();
+            }
+
+        });
+
+          //begin submit form
+        begin = function (xhr) {
+            Loading('body');
+        };
+        //complete submit form
+        completed = function (xhr) {
+            console.log(xhr);
+                    let data = xhr.responseJSON;
+                     if (data.code == 200) {
+                         setTimeout(function () {
+                             CompleteLoad('body');
+                             window.location.href = '@Url.Action("Index","MyApps")';
+                         }, 1000);
+                     }
+                     else
+                     {
+                         CompleteLoad('body');
+                         Swal.fire({
+                             text: data.message,
+                             icon: "error",
+                             buttonsStyling: false,
+                             confirmButtonText: "Cancel",
+                             customClass: {
+                                 confirmButton: "btn font-weight-bold btn-light-danger"
+                             }
+                         });
+                     }
+        };
+        //fail submit form
+        failed = function (xhr) {
+            CompleteLoad('body');
+            Swal.fire({
+                text: xhr.statusText,
+                icon: "error",
+                buttonsStyling: false,
+                confirmButtonText: "Cancel",
+                customClass: {
+                    confirmButton: "btn font-weight-bold btn-light-danger"
+                }
+            });
+        };
+
+    </script>
+}

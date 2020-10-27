@@ -1,6 +1,6 @@
-﻿@model IList<Shared.DTOs.AppClientDto>
+﻿@model IList<Shared.DTOs.APIResourceDto>
 @{
-    ViewData["Title"] = "My apps";
+    ViewData["Title"] = "My APIs";
 }
 @section Styles{
     <link href="~/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" />
@@ -10,13 +10,13 @@
     <div class="card-header flex-wrap border-0 pt-6 pb-0">
         <div class="card-title">
             <h3 class="card-label">
-                My apps
-                <span class="d-block text-muted pt-2 font-size-sm">ສະແດງລາຍການ Apps(Clients) ທັງຫມົດທີ່ມີ</span>
+                My APIs
+                <span class="d-block text-muted pt-2 font-size-sm">ສະແດງລາຍການ Apis ທັງຫມົດທີ່ມີ</span>
             </h3>
         </div>
         <div class="card-toolbar">
             <!--begin::Button-->
-            <a asp-action="create" asp-controller="Myapps" class="btn btn-primary font-weight-bolder">
+            <a asp-action="create" asp-controller="Myapis" class="btn btn-primary font-weight-bolder">
                 <span class="svg-icon svg-icon-md">
                     <!--begin::Svg Icon | path:assets/media/svg/icons/Design/Flatten.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                         <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -45,8 +45,11 @@
         <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
             <thead>
                 <tr>
-                    <th>Client Id</th>
-                    <th>Client Name</th>
+                    <th>API ID</th>
+                    <th>API Name</th>
+                    <th>Display name</th>
+                    <th>Description</th>
+                    <th>Create</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -57,10 +60,13 @@
                     foreach (var item in Model)
                     {
                         <tr>
-                            <td>@item.ClientId</td>
-                            <td>@item.ClientName</td>
+                            <td>@item.Id</td>
+                            <td>@item.ResName</td>
+                            <td>@item.DisplayName</td>
+                            <td>@item.Description</td>
+                            <td>@item.Created</td>
                             <td nowrap>
-                                <a asp-action="Edit" asp-route-id="@item.Id" asp-route-revision="@item.Revision" asp-route-appid="@item.AppID" asp-route-clientid="@item.ClientId" asp-route-clientname="@item.ClientName" asp-route-description="@item.Description" asp-route-userid="@item.UserID" asp-route-created="@item.Created" class="btn btn-icon btn-light btn-hover-success btn-sm" title="Edit details">
+                                <a asp-action="Edit" asp-route-id="@item.Id" asp-route-revision="@item.Revision" asp-route-description="@item.Description" asp-route-userid="@item.UserID" asp-route-created="@item.Created" class="btn btn-icon btn-light btn-hover-success btn-sm" title="Edit details">
                                     <span class="svg-icon svg-icon-md svg-icon-success">
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -71,7 +77,7 @@
                                         </svg>
                                     </span>
                                 </a>
-                                <a href="#" data-id="@item.Id" data-name="@item.ClientName" data-rev="@item.Revision" class="btn btn-icon btn-light btn-hover-danger btn-sm delItem" title="Delete">
+                                <a href="#" data-id="@item.Id" data-name="@item.ResName" data-rev="@item.Revision" class="btn btn-icon btn-light btn-hover-danger btn-sm delItem" title="Delete">
                                     <span class="svg-icon svg-icon-md svg-icon-danger">
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -94,7 +100,7 @@
     </div>
 </div>
 <!--end::Card-->
-<form data-ajax="true" data-ajax-url="Myapps/Delete" data-ajax-method="post" data-ajax-begin="begin" data-ajax-complete="completed" data-ajax-failure="failed" id="form-delete">
+<form data-ajax="true" data-ajax-url="Myapis/Delete" data-ajax-method="post" data-ajax-begin="begin" data-ajax-complete="completed" data-ajax-failure="failed" id="form-delete">
     <input type="hidden" name="id" id="id" value="" />
     <input type="hidden" name="rev" id="rev" value="" />
 </form>
@@ -133,9 +139,7 @@
         $(document).on('click', '.delItem', function () {
             let id = $(this).data('id');
             let name = $(this).data('name');
-            let rev = $(this).data('rev');
             $('#id').val(id);
-            $('#rev').val(rev);
             //Message comfirm delete item
             Swal.fire({
                 text: 'Do you want to delete "' + name + '"?',
@@ -153,7 +157,7 @@
                     //Submit form
                     $('#form-delete').submit();
                 }
-                
+
             });
         });
         //begin submit form
@@ -166,7 +170,7 @@
                      if (data.code == 200) {
                          setTimeout(function () {
                              CompleteLoad('body');
-                             window.location.href = '@Url.Action("Index","MyApps")';
+                             window.location.href = '@Url.Action("Index","MyApis")';
                          }, 1000);
                      }
                      else

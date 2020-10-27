@@ -290,8 +290,9 @@
         };
         //complete submit form
         completed = function (xhr) {
+       
+            let data = xhr.responseJSON;
             console.log(xhr);
-                    let data = xhr.responseJSON;
                      if (data.code == 200) {
                          setTimeout(function () {
                              CompleteLoad('body');

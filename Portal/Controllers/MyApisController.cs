@@ -4,28 +4,26 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using CouchDBService;
-using DotNetOpenAuth.InfoCard;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Portal.Repositories;
 using Shared.Configs;
-using Shared.DTOs;
 using Shared.Entities;
 using Shared.Repositories;
 
 namespace Portal.Controllers
 {
     [Authorize]
-    public class MyAppsController : Controller
+    public class MyApisController : Controller
     {
-        private readonly ILogger<MyAppsController> _logger;
+        private readonly ILogger<MyApisController> _logger;
         private readonly IAPILaoKYC apiKYC;
-        private readonly IMyAppClient myAppClient;
+        private IMyAPIResource myAPIResouce;
         private ICouchContext couchContext;
         private DBConfig dBConfig;
 
-        public MyAppsController(ILogger<MyAppsController> logger, DBConfig dBConf)
+        public MyApisController(ILogger<MyApisController> logger, DBConfig dBConf)
         {
             _logger = logger;
             this.couchContext = new CouchContext();
@@ -33,11 +31,11 @@ namespace Portal.Controllers
 
             apiKYC = new APILaoKYC();
 
-            myAppClient = new MyAppClient(couchContext, dBConfig, apiKYC);
+            myAPIResouce = new MyAPIResource(couchContext, dBConfig, apiKYC);
         }
         public async Task<IActionResult> Index()
         {
-            var result = await myAppClient.ListAll();
+            var result = await myAPIResouce.ListAll();
             return View(result.ToList());
         }
 
@@ -47,47 +45,41 @@ namespace Portal.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(AppClient appClient)
+        public async Task<IActionResult> Create(APIResource resource)
         {
-            if (appClient != null)
+            if (resource != null)
             {
                 try
                 {
                     string UserId = User.Claims.Where(x => x.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value;
-                    appClient.UserID = UserId;
-                    appClient.Created = string.Format("{0:yyyy-MM-dd HH:mm:ss}", DateTime.Now);
-                    var result = await myAppClient.CreateAppClient(appClient);
-                    if (result)
-                    {
-                        return Json(new { Code = 200, Message = "ID is not incorrect." });
-
-                    }
-                 
+                    
+                    resource.UserID = UserId;
+                    resource.Created = string.Format("{0:yyyy-MM-dd HH:mm:ss}", DateTime.Now);
+                    var result = await myAPIResouce.CreateResource(resource);
                 }
                 catch (Exception)
                 {
                     throw;
                 }
-               
+
             }
             return View();
         }
 
-        public async Task<IActionResult> Edit(AppClientDto appClient)
+        public async Task<IActionResult> Edit(APIResource resource)
         {
             //Query from api KYC
-            var resultClient = await apiKYC.QueryClient(appClient.AppID);
-            UpdateClientModel model = new UpdateClientModel()
+
+            UpdateApiResource model = new UpdateApiResource()
             {
-               AppClientDto = appClient,
-               ClientApiDto = resultClient
+               
             };
             return View(model);
         }
         [HttpPost]
-        public IActionResult Edit(UpdateClientModel updateClientModel)
+        public async Task<IActionResult> Edit(UpdateApiResource param)
         {
-
+            var result = await myAPIResouce.UpdateResource(param.apiResourceApiDto, param.aPIResource);
             return View();
         }
         [HttpPost]
@@ -97,7 +89,7 @@ namespace Portal.Controllers
             {
                 try
                 {
-                    var result = await myAppClient.RemoveClientApp(id: id, rev: rev);
+                    var result = await myAPIResouce.RemoveResource(id: id, rev: rev);
                     if (result)
                     {
                         return Json(new { Code = 200, Message = "Delete success." });

@@ -8,7 +8,7 @@ namespace Shared.DTOs
 {
     public class AppClientDto: AppClient
     {
-        [JsonProperty("_id")]
+        [JsonProperty("id")]
         public string Id { get; set; }
         [JsonProperty("_rev")]
         public string Revision { get; set; }

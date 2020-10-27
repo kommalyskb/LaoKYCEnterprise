@@ -26,5 +26,6 @@ namespace Shared.Repositories
         Task<bool> RemoveResourceSecret(int? id);
         Task<bool> RemoveResourceProperty(int? id);
         Task<bool> RemoveResourceScope(int? id, int? scopeid);
+        Task<ClientApiDto> QueryClient(int? id);
     }
 }

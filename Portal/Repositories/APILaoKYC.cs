@@ -340,6 +340,47 @@ namespace Portal.Repositories
             return response.IsSuccessStatusCode;
         }
 
+        public async Task<ClientApiDto> QueryClient(int? id)
+        {
+            // discover endpoints from metadata
+            var client = new HttpClient();
+            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery);
+            if (disco.IsError)
+            {
+                return new ClientApiDto();
+            }
+
+            // request token
+            var req = new PasswordTokenRequest
+            {
+                Address = disco.TokenEndpoint,
+
+                ClientId = IdentityEndpoint.ClientID,
+                ClientSecret = IdentityEndpoint.Secret,
+                Scope = IdentityEndpoint.Scopes,
+                UserName = IdentityEndpoint.UserName,
+                Password = IdentityEndpoint.Password
+            };
+            var tokenResponse = await client.RequestPasswordTokenAsync(req);
+
+            if (tokenResponse.IsError)
+            {
+                return new ClientApiDto();
+            }
+
+            var apiClient = new HttpClient();
+            apiClient.SetBearerToken(tokenResponse.AccessToken);
+
+            var response = await apiClient.GetAsync($"{IdentityEndpoint.ClientUri}/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var resDeserialize = await JsonHelper.Deserialize<ClientApiDto>(response, defaultOptions);
+                return resDeserialize;
+            }
+            return new ClientApiDto();
+        }
+
         public async Task<bool> RemoveClient(int? id)
         {
             // discover endpoints from metadata
@@ -705,5 +746,15 @@ namespace Portal.Repositories
 
             return response.IsSuccessStatusCode;
         }
+    }
+    public class UpdateClientModel
+    {
+        public ClientApiDto ClientApiDto { get; set; }
+        public AppClientDto AppClientDto { get; set; }
+    }
+    public class UpdateApiResource
+    {
+        public ApiResourceApiDto apiResourceApiDto { get; set; }
+        public APIResourceDto aPIResource { get; set; }
     }
 }
