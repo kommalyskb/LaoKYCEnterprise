@@ -1,4 +1,5 @@
 ﻿using IdentityModel.Client;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Shared.Configs;
 using Shared.DTOs;
 using Shared.Entities;
@@ -423,6 +424,57 @@ namespace Portal.Repositories
             return new ClientApiDto();
         }
 
+        public async Task<IdentityResourcesDto> QueryIdentityResource(string searchText, int? page, int? pageSize)
+        {
+            // discover endpoints from metadata
+            var client = new HttpClient();
+            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery);
+            if (disco.IsError)
+            {
+                return new IdentityResourcesDto();
+            }
+
+            // request token
+            var req = new PasswordTokenRequest
+            {
+                Address = disco.TokenEndpoint,
+
+                ClientId = IdentityEndpoint.ClientID,
+                ClientSecret = IdentityEndpoint.Secret,
+                Scope = IdentityEndpoint.Scopes,
+                UserName = IdentityEndpoint.UserName,
+                Password = IdentityEndpoint.Password
+            };
+            var tokenResponse = await client.RequestPasswordTokenAsync(req);
+
+            if (tokenResponse.IsError)
+            {
+                return new IdentityResourcesDto();
+            }
+
+            var apiClient = new HttpClient();
+            apiClient.SetBearerToken(tokenResponse.AccessToken);
+
+            string Uri = "";
+            if (searchText != "")
+            {
+                Uri = $"{IdentityEndpoint.IdentityResourceUri}?searchText={searchText}&page={page}&pageSize={pageSize}";
+            }
+            else
+            {
+                Uri = $"{IdentityEndpoint.IdentityResourceUri}?page={page}&pageSize={pageSize}";
+            }
+
+            var response = await apiClient.GetAsync(Uri);
+
+            if (response.IsSuccessStatusCode)
+            {
+                var resDeserialize = await JsonHelper.Deserialize<IdentityResourcesDto>(response, defaultOptions);
+                return resDeserialize;
+            }
+            return new IdentityResourcesDto();
+        }
+
         public async Task<bool> RemoveClient(int? id)
         {
             // discover endpoints from metadata
@@ -793,6 +845,9 @@ namespace Portal.Repositories
     {
         public ClientApiDto ClientApiDto { get; set; }
         public AppClientDto AppClientDto { get; set; }
+        public List<SelectListItem> allowedScopes { get; set; }
+        public List<SelectListItem> redirectUris { get; set; }
+        public List<SelectListItem> allowedGrantTypes { get; set; }
     }
     public class UpdateApiResource
     {

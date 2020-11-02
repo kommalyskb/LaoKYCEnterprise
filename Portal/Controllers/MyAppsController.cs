@@ -7,6 +7,7 @@ using CouchDBService;
 using DotNetOpenAuth.InfoCard;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.Extensions.Logging;
 using Portal.Repositories;
 using Shared.Configs;
@@ -68,13 +69,13 @@ namespace Portal.Controllers
                     {
                         return Json(new { Code = 400, Message = "Fail" });
                     }
-                 
+
                 }
                 catch (Exception ex)
                 {
                     return Json(new { Code = 501, Message = ex.Message });
                 }
-               
+
             }
             return Json(new { Code = 400, Message = "Your input is null" });
         }
@@ -82,7 +83,38 @@ namespace Portal.Controllers
         public async Task<IActionResult> Edit(AppClientDto appClient)
         {
             //Query from api KYC
-            var resultClient = await apiKYC.QueryClient(appClient.AppID);
+            var resultClient = await apiKYC.QueryClient(appClient.AppID); //Query Client
+          //  var resultIdentityRes = await apiKYC.QueryIdentityResource("", 1, 10); //Get Identity resource
+
+            List<SelectListItem> allowedScopes = new List<SelectListItem>();
+            List<SelectListItem> redirectUris = new List<SelectListItem>();
+
+            #region Allow scope
+            //foreach (var item in resultIdentityRes.identityResources)
+            //{
+            //    SelectListItem selectListItem = new SelectListItem();
+            //    selectListItem.Text = item.displayName;
+            //    selectListItem.Value = item.name;
+
+            //    if (resultClient.AllowedScopes.Where(x => x.Equals(item.name)).Count() > 0)
+            //    {
+            //        selectListItem.Selected = true;
+            //    }
+            //    allowedScopes.Add(selectListItem);
+            //}
+            #endregion
+
+            #region RedirectUris
+            foreach (var item in resultClient.RedirectUris)
+            {
+                SelectListItem selectListItem = new SelectListItem();
+                selectListItem.Text = item.ToString();
+                selectListItem.Value = item.ToString();
+                selectListItem.Selected = true;
+                redirectUris.Add(selectListItem);
+            }
+            #endregion
+
 
             AppClientDto appClientDto = new AppClientDto()
             {
@@ -96,8 +128,10 @@ namespace Portal.Controllers
 
             UpdateClientModel model = new UpdateClientModel()
             {
-               AppClientDto = appClientDto,
-               ClientApiDto = resultClient
+                AppClientDto = appClientDto,
+                ClientApiDto = resultClient,
+                allowedScopes = allowedScopes,
+                redirectUris = redirectUris
             };
             return View(model);
         }
@@ -113,7 +147,7 @@ namespace Portal.Controllers
             {
                 return Json(new { Code = 501, Message = "Update fail." });
             }
-          
+
         }
         [HttpPost]
         public async Task<IActionResult> DeleteAsync(string id, string rev)

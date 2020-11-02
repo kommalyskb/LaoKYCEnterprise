@@ -159,6 +159,7 @@
                                         <input type="text" class="form-control form-control-solid form-control-lg" asp-for="AppClientDto.Description" placeholder="Client description" />
                                     </div>
                                     <!--end::Input-->
+                                 
                                 </div>
                                 <!--end::Wizard Step 1-->
                                 <!--begin::Wizard Step 2-->
@@ -239,12 +240,15 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="font-size-h6 font-weight-bolder text-dark">Allowed Scopes</label>
-
+                                        <label>Allowed Scopes</label>
+                                        <br />
+                                        <select class="form-control select2" style="width:100%" multiple="multiple" asp-for="ClientApiDto.AllowedScopes" asp-items="@Model.allowedScopes"></select>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="font-size-h6 font-weight-bolder text-dark">Redirect Uris</label>
 
+                                    <div class="form-group">
+                                        <label>Redirect Uris</label>
+                                        <br />
+                                        <select class="form-control selectTag" style="width:100%" multiple="multiple" asp-for="ClientApiDto.RedirectUris" asp-items="@Model.redirectUris"></select>
                                     </div>
                                     <div class="form-group">
                                         <label class="font-size-h6 font-weight-bolder text-dark">Allowed Grant Types</label>
@@ -599,6 +603,7 @@
 @section Scripts{
     <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
     <script>
+       
 
         // Class definition
         var KTWizard1 = function () {
@@ -735,6 +740,8 @@
 
         jQuery(document).ready(function () {
             KTWizard1.init();
+            $('.select2').select2();
+            $('.selectTag').select2({ tags: true});
         });
 
           //begin submit form

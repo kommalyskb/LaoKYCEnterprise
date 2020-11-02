@@ -29,5 +29,6 @@ namespace Shared.Repositories
         Task<bool> RemoveResourceScope(int? id, int? scopeid);
         Task<ClientApiDto> QueryClient(int? id);
         Task<APIResource> QueryAPI(int? id);
+        Task<IdentityResourcesDto> QueryIdentityResource(string searchText, int? page, int? pageSize);
     }
 }

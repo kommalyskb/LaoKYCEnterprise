@@ -15,5 +15,6 @@ namespace Shared.Configs
         public static string ClientUri = "https://api.oneid.sbg.la/api/Clients";
         public static string ResourceUri = "https://api.oneid.sbg.la/api/ApiResources";
         public static string GrantUri = "https://api.oneid.sbg.la/api/PersistedGrants";
+        public static string IdentityResourceUri = "https://api.oneid.sbg.la/api/IdentityResources";
     }
 }

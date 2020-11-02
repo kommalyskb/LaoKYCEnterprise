@@ -43,3 +43,26 @@
 ### Exceptions Cases
 ```
 ```
+## My Grant Cases
+### Normal Cases
+1.ສະແດງລາຍການ My Grant ທັງຫມົດທີ່ມີ
+2.ສະແດງລາຍການ My Grant ທັງຫມົດທີມີ ຕາມ ຂອງ Users ທີ່ເປັນເຈົ້າຂອງ
+4.ລຶບ My Grant ຕາມຂໍ້ມູນທີ່ກຳຫນົດ ສຳເລັດ
+### Alternatives Cases
+```
+```
+### Exceptions Cases
+```
+```
+## Identity resource Cases
+### Normal Cases
+1.ສະແດງລາຍການ Identity Resources ທັງຫມົດທີ່ມີ
+2.ສ້າງ Identity Resources ໃຫມ່ ຕາມຂໍ້ມູນເລີ່ມຕົ້ນ ສຳເລັດ
+3.ອັບເດດ Identity Resources ຕາມຂໍ້ມູນທີ່ກຳຫນົດ ສຳເລັດ
+4.ລຶບ Identity Resources ຕາມຂໍ້ມູນທີ່ກຳຫນົດ ສຳເລັດ
+### Alternatives Cases
+```
+```
+### Exceptions Cases
+```
+```
