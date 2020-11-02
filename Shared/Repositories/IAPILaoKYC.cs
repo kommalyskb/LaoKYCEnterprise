@@ -1,4 +1,5 @@
 ﻿using Shared.DTOs;
+using Shared.Entities;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -27,5 +28,6 @@ namespace Shared.Repositories
         Task<bool> RemoveResourceProperty(int? id);
         Task<bool> RemoveResourceScope(int? id, int? scopeid);
         Task<ClientApiDto> QueryClient(int? id);
+        Task<APIResource> QueryAPI(int? id);
     }
 }

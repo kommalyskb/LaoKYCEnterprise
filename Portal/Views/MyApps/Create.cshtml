@@ -37,15 +37,15 @@
                     <div class="my-5">
                         <div class="form-group">
                             <label class="font-size-h6 font-weight-bolder text-dark">Client ID</label>
-                            <input type="text" class="form-control h-auto py-7 px-6 border-0 rounded-lg font-size-h6 form-control-solid" placeholder="Client ID" asp-for="ClientId" value="@Guid.NewGuid().ToString()" />
+                            <input type="text" class="form-control py-7 px-6 border-0 rounded-s font-size-h6 form-control-solid" placeholder="Client ID" asp-for="ClientId" value="@Guid.NewGuid().ToString()" />
                         </div>
                         <div class="form-group">
                             <label class="font-size-h6 font-weight-bolder text-dark">Client Name</label>
-                            <input type="text" class="form-control h-auto py-7 px-6 border-0 rounded-lg font-size-h6 form-control-solid" placeholder="Client's name" asp-for="ClientName" value="" />
+                            <input type="text" class="form-control py-7 px-6 border-0 rounded-md font-size-h6 form-control-solid" placeholder="Client's name" asp-for="ClientName" value="" />
                         </div>
                         <div class="form-group">
                             <label class="font-size-h6 font-weight-bolder text-dark">Description</label>
-                            <input type="text" class="form-control h-auto py-7 px-6 border-0 rounded-lg font-size-h6 form-control-solid" placeholder="Description" asp-for="Description" value="" />
+                            <input type="text" class="form-control py-7 px-6 border-0 rounded-md font-size-h6 form-control-solid" placeholder="Description" asp-for="Description" value="" />
                         </div>
                     </div>
                     @*<div class="separator separator-dashed my-10"></div>
@@ -292,11 +292,10 @@
         completed = function (xhr) {
        
             let data = xhr.responseJSON;
-            console.log(xhr);
                      if (data.code == 200) {
                          setTimeout(function () {
                              CompleteLoad('body');
-                             window.location.href = '@Url.Action("Index","MyApps")';
+                             window.location.href = '@Url.Action("Edit", "MyApps")/?AppID=' + data.Id + '&revision=' + data.rev;
                          }, 1000);
                      }
                      else

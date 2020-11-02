@@ -11,7 +11,7 @@
         <div class="card-title">
             <h3 class="card-label">
                 My apps
-                <span class="d-block text-muted pt-2 font-size-sm">ສະແດງລາຍການ Apps(Clients) ທັງຫມົດທີ່ມີ</span>
+                <span class="d-block text-muted pt-2 font-size-sm">ສະແດງລາຍການ Apps(Clients)</span>
             </h3>
         </div>
         <div class="card-toolbar">
@@ -60,7 +60,8 @@
                             <td>@item.ClientId</td>
                             <td>@item.ClientName</td>
                             <td nowrap>
-                                <a asp-action="Edit" asp-route-id="@item.Id" asp-route-revision="@item.Revision" asp-route-appid="@item.AppID" asp-route-clientid="@item.ClientId" asp-route-clientname="@item.ClientName" asp-route-description="@item.Description" asp-route-userid="@item.UserID" asp-route-created="@item.Created" class="btn btn-icon btn-light btn-hover-success btn-sm" title="Edit details">
+                                @*<a asp-action="Edit" asp-route-id="@item.Id" asp-route-revision="@item.Revision" asp-route-appid="@item.AppID" asp-route-clientid="@item.ClientId" asp-route-clientname="@item.ClientName" asp-route-description="@item.Description" asp-route-userid="@item.UserID" asp-route-created="@item.Created" class="btn btn-icon btn-light btn-hover-success btn-sm" title="Edit details">*@
+                                <a asp-action="Edit" asp-route-appid="@item.AppID" asp-route-revision="@item.Revision" class="btn btn-icon btn-light btn-hover-success btn-sm" title="Edit details">
                                     <span class="svg-icon svg-icon-md svg-icon-success">
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">

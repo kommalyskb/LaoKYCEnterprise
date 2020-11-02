@@ -4,9 +4,8 @@
     ViewData["Title"] = "Edit";
 }
 @section Styles{
-    <link href="~/assets/css/pages/wizard/wizard-5.css" rel="stylesheet" />
+    <link href="~/assets/css/pages/wizard/wizard-1.css" rel="stylesheet" />
 }
-
 
 <!--begin::Entry-->
 <div class="d-flex flex-column-fluid">
@@ -14,205 +13,178 @@
     <div class=" container ">
         <!--begin::Card-->
         <div class="card card-custom">
+            <div class="card-header flex-wrap border-0 pt-6 pb-0">
+                <div class="card-title">
+                    <h3 class="card-label">
+                        Update App
+                        <span class="d-block text-muted pt-2 font-size-sm">ແກ້ໄຂຂໍ້ມູນ Apps(Client)</span>
+                    </h3>
+                </div>
+            </div>
             <!--begin::Card Body-->
             <div class="card-body p-0">
-                <!--begin::Wizard 5-->
-                <div class="wizard wizard-5 d-flex flex-column flex-lg-row flex-row-fluid" id="kt_wizard">
-                    <!--begin::Aside-->
-                    <div class="wizard-aside bg-white d-flex flex-column flex-row-auto w-100 w-lg-300px w-xl-400px w-xxl-500px">
-                        <!--begin::Aside Top-->
-                        <div class="d-flex flex-column-fluid flex-column px-xxl-30 px-10">
-                            <!--begin: Wizard Nav-->
-                            <div class="wizard-nav d-flex d-flex justify-content-center pt-10 pt-lg-20 pb-5">
-                                <!--begin::Wizard Steps-->
-                                <div class="wizard-steps">
-                                    <!--begin::Wizard Step 1 Nav-->
-                                    <div class="wizard-step" data-wizard-type="step" data-wizard-state="current">
-                                        <div class="wizard-wrapper">
-                                            <div class="wizard-icon">
-                                                <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">1</span>
-                                            </div>
-                                            <div class="wizard-label">
-                                                <h3 class="wizard-title">
-                                                    Name
-                                                </h3>
-                                                <div class="wizard-desc">
-                                                    Setup your client's account
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Wizard Step 1 Nav-->
-                                    <!--begin::Wizard Step 2 Nav-->
-                                    <div class="wizard-step" data-wizard-type="step">
-                                        <div class="wizard-wrapper">
-                                            <div class="wizard-icon">
-                                                <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">2</span>
-                                            </div>
-                                            <div class="wizard-label">
-                                                <h3 class="wizard-title">
-                                                    Basics
-                                                </h3>
-                                                <div class="wizard-desc">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Wizard Step 2 Nav-->
-                                    <!--begin::Wizard Step 3 Nav-->
-                                    <div class="wizard-step" data-wizard-type="step">
-                                        <div class="wizard-wrapper">
-                                            <div class="wizard-icon">
-                                                <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">3</span>
-                                            </div>
-                                            <div class="wizard-label">
-                                                <h3 class="wizard-title">
-                                                    Authentication/Logout
-                                                </h3>
-                                                <div class="wizard-desc">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Wizard Step 3 Nav-->
-                                    <!--begin::Wizard Step 4 Nav-->
-                                    <div class="wizard-step" data-wizard-type="step">
-                                        <div class="wizard-wrapper">
-                                            <div class="wizard-icon">
-                                                <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">4</span>
-                                            </div>
-                                            <div class="wizard-label">
-                                                <h3 class="wizard-title">
-                                                    Token
-                                                </h3>
-                                                <div class="wizard-desc">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Wizard Step 4 Nav-->
-                                    <!--begin::Wizard Step 5 Nav-->
-                                    <div class="wizard-step" data-wizard-type="step">
-                                        <div class="wizard-wrapper">
-                                            <div class="wizard-icon">
-                                                <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">5</span>
-                                            </div>
-                                            <div class="wizard-label">
-                                                <h3 class="wizard-title">
-                                                    Consent Screen
-                                                </h3>
-                                                <div class="wizard-desc">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Wizard Step 5 Nav-->
-                                    <!--begin::Wizard Step 6 Nav-->
-                                    <div class="wizard-step" data-wizard-type="step">
-                                        <div class="wizard-wrapper">
-                                            <div class="wizard-icon">
-                                                <i class="wizard-check ki ki-check"></i>
-                                                <span class="wizard-number">6</span>
-                                            </div>
-                                            <div class="wizard-label">
-                                                <h3 class="wizard-title">
-                                                    Device Flow
-                                                </h3>
-                                                <div class="wizard-desc">
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!--end::Wizard Step 6 Nav-->
+                <!--begin::Wizard-->
+                <div class="wizard wizard-1" id="kt_wizard_v1" data-wizard-state="step-first" data-wizard-clickable="false">
+                    <!--begin::Wizard Nav-->
+                    <div class="wizard-nav border-bottom">
+                        <div class="wizard-steps p-8 p-lg-10">
+                            <!--begin::Wizard Step 1 Nav-->
+                            <div class="wizard-step" data-wizard-type="step" data-wizard-state="current">
+                                <div class="wizard-label">
+                                    <i class="wizard-icon flaticon-user-settings"></i>
+                                    <h3 class="wizard-title">Name</h3>
                                 </div>
-                                <!--end::Wizard Steps-->
+                                <span class="svg-icon svg-icon-xl wizard-arrow">
+                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <polygon points="0 0 24 0 24 24 0 24" />
+                                            <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5" width="2" height="14" rx="1" />
+                                            <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) " />
+                                        </g>
+                                    </svg><!--end::Svg Icon-->
+                                </span>
                             </div>
-                            <!--end: Wizard Nav-->
-                        </div>
-                        <!--end::Aside Top-->
-                      
-                    </div>
-                    <!--begin::Aside-->
-                    <!--begin::Content-->
-                    <div class="wizard-content bg-gray-100 d-flex flex-column flex-row-fluid py-15 px-5 px-lg-10">
-                        <!--begin::Form-->
-                        <div class="d-flex justify-content-center flex-row-fluid">
-                            <form class="pb-5 w-100 w-md-450px w-lg-500px" novalidate="novalidate" id="kt_wizard_form">
-                                <!--begin: Wizard Step 1-->
-                                <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
-                                    <!--begin::Title-->
-                                    <div class="pb-10 pb-lg-15">
-                                        <h3 class="font-weight-bolder text-dark font-size-h2">Name</h3>
-                                        <div class="text-muted font-weight-bold font-size-h5">
-                                            Setup your client's account
-                                        </div>
-                                    </div>
-                                    <!--begin::Title-->
-                                    <!--begin::Form Group-->
-                                    <div class="form-group">
-                                        <label class="font-size-h6 font-weight-bolder text-dark">Client ID</label>
-                                        <input type="text" class="form-control h-auto p-5 border-0 rounded-lg font-size-h6" asp-for="AppClientDto.ClientId" placeholder="Client ID"/>
-                                    </div>
-                                    <!--end::Form Group-->
-                                    <!--begin::Form Group-->
-                                    <div class="form-group">
-                                        <label class="font-size-h6 font-weight-bolder text-dark">Client Name</label>
-                                        <input type="text" class="form-control h-auto  p-6 border-0 rounded-lg font-size-h6" asp-for="ClientApiDto.ClientName" placeholder="Client Name" />
-                                    </div>
-                                    <!--end::Form Group-->
+                            <!--end::Wizard Step 1 Nav-->
+                            <!--begin::Wizard Step 2 Nav-->
+                            <div class="wizard-step" data-wizard-type="step">
+                                <div class="wizard-label">
+                                    <i class="wizard-icon flaticon-list"></i>
+                                    <h3 class="wizard-title">Basics</h3>
                                 </div>
-                                <!--end: Wizard Step 1-->
-                                <!--begin: Wizard Step 2-->
+                                <span class="svg-icon svg-icon-xl wizard-arrow">
+                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <polygon points="0 0 24 0 24 24 0 24" />
+                                            <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5" width="2" height="14" rx="1" />
+                                            <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) " />
+                                        </g>
+                                    </svg><!--end::Svg Icon-->
+                                </span>
+                            </div>
+                            <!--end::Wizard Step 2 Nav-->
+                            <!--begin::Wizard Step 3 Nav-->
+                            <div class="wizard-step" data-wizard-type="step">
+                                <div class="wizard-label">
+                                    <i class="wizard-icon flaticon-lock"></i>
+                                    <h3 class="wizard-title">Authentication</h3>
+                                </div>
+                                <span class="svg-icon svg-icon-xl wizard-arrow">
+                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <polygon points="0 0 24 0 24 24 0 24" />
+                                            <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5" width="2" height="14" rx="1" />
+                                            <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) " />
+                                        </g>
+                                    </svg><!--end::Svg Icon-->
+                                </span>
+                            </div>
+                            <!--end::Wizard Step 3 Nav-->
+                            <!--begin::Wizard Step 4 Nav-->
+                            <div class="wizard-step" data-wizard-type="step">
+                                <div class="wizard-label">
+                                    <i class="wizard-icon flaticon-security"></i>
+                                    <h3 class="wizard-title">Token</h3>
+                                </div>
+                                <span class="svg-icon svg-icon-xl wizard-arrow">
+                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <polygon points="0 0 24 0 24 24 0 24" />
+                                            <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5" width="2" height="14" rx="1" />
+                                            <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) " />
+                                        </g>
+                                    </svg><!--end::Svg Icon-->
+                                </span>
+                            </div>
+                            <!--end::Wizard Step 4 Nav-->
+                            <!--begin::Wizard Step 5 Nav-->
+                            <div class="wizard-step" data-wizard-type="step">
+                                <div class="wizard-label">
+                                    <i class="wizard-icon flaticon-star"></i>
+                                    <h3 class="wizard-title">Consent</h3>
+                                </div>
+                                <span class="svg-icon svg-icon-xl wizard-arrow">
+                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <polygon points="0 0 24 0 24 24 0 24" />
+                                            <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5" width="2" height="14" rx="1" />
+                                            <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) " />
+                                        </g>
+                                    </svg><!--end::Svg Icon-->
+                                </span>
+                            </div>
+                            <!--end::Wizard Step 5 Nav-->
+                            <!--begin::Wizard Step 6 Nav-->
+                            <div class="wizard-step" data-wizard-type="step">
+                                <div class="wizard-label">
+                                    <i class="wizard-icon flaticon-settings"></i>
+                                    <h3 class="wizard-title">Device</h3>
+                                </div>
+                                <span class="svg-icon svg-icon-xl wizard-arrow last">
+                                    <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Arrow-right.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <polygon points="0 0 24 0 24 24 0 24" />
+                                            <rect fill="#000000" opacity="0.3" transform="translate(12.000000, 12.000000) rotate(-90.000000) translate(-12.000000, -12.000000) " x="11" y="5" width="2" height="14" rx="1" />
+                                            <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) " />
+                                        </g>
+                                    </svg><!--end::Svg Icon-->
+                                </span>
+                            </div>
+                            <!--end::Wizard Step 6 Nav-->
+                        </div>
+                    </div>
+                    <!--end::Wizard Nav-->
+                    <!--begin::Wizard Body-->
+                    <div class="row justify-content-center my-10 px-8 my-lg-15 px-lg-10">
+                        <div class="col-xl-12 col-xxl-7">
+                            <!--begin::Wizard Form-->
+                            <form class="form" id="kt_form" data-ajax="true" data-ajax-url="Edit" data-ajax-method="post" data-ajax-begin="begin" data-ajax-complete="completed" data-ajax-failure="failed">
+                                <!--begin::Wizard Step 1-->
+                                <div class="pb-5" data-wizard-type="step-content" data-wizard-state="current">
+                                    <h3 class="mb-10 font-weight-bold text-dark">Setup your client's account</h3>
+                                    <!--begin::Input-->
+                                    <div class="form-group">
+                                        <label>Client ID</label>
+                                        <input type="text" class="form-control form-control-solid form-control-lg" asp-for="AppClientDto.ClientId" placeholder="Client ID" />
+                                    </div>
+                                    <!--end::Input-->
+                                    <!--begin::Input-->
+                                    <div class="form-group">
+                                        <label>Client Name</label>
+                                        <input type="text" class="form-control form-control-solid form-control-lg" asp-for="AppClientDto.ClientName" placeholder="Client Name" />
+                                    </div>
+                                    <!--end::Input-->
+                                    <!--begin::Input-->
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <input type="text" class="form-control form-control-solid form-control-lg" asp-for="AppClientDto.Description" placeholder="Client description" />
+                                    </div>
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Wizard Step 1-->
+                                <!--begin::Wizard Step 2-->
                                 <div class="pb-5" data-wizard-type="step-content">
-                                    <!--begin::Title-->
-                                    <div class="pb-10 pb-lg-15">
-                                        <h3 class="font-weight-bolder text-dark font-size-h2">Basic detail</h3>
-                                        <div class="text-muted font-weight-bold font-size-h4">
-                                        </div>
-                                    </div>
-                                    <!--end::Title-->
-                                    <!--begin::Form Group-->
+                                    <h4 class="mb-10 font-weight-bold text-dark">Basics</h4>
                                     <div class="form-group">
-                                        <label class="font-size-h6 font-weight-bolder text-dark">Description</label>
-                                        <input type="text" class="form-control h-auto p-5 border-0 rounded-lg font-size-h6" asp-for="AppClientDto.Description" placeholder="Client Description" />
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="font-size-h6 font-weight-bolder text-dark">Protocol Type</label>
-                                        <select asp-for="ClientApiDto.ProtocolType" class="form-control h-auto p-5 border-0 rounded-lg font-size-h6">
+                                        <label>Protocol Type</label>
+                                        <select asp-for="ClientApiDto.ProtocolType" class="form-control form-control-solid form-control-lg">
                                             <option value="oidc" selected>OpenID Connect</option>
                                         </select>
                                     </div>
-                                
                                     <div class="row">
-                                        <div class="col-lg-6 col-md-6">
+                                        <div class="col-xl-4">
                                             <div class="form-group">
-                                                <label class="col-form-label">Client ID</label>
-                                                <div class="">
-                                                    <span class="switch switch-icon">
-                                                        <label>
-                                                            <input type="checkbox" asp-for="ClientApiDto.Enabled" />
-                                                            <span></span>
-                                                        </label>
-                                                    </span>
-                                                </div>
+                                                <label>Client ID</label>
+                                                <span class="switch switch-icon">
+                                                    <label>
+                                                        <input type="checkbox" asp-for="ClientApiDto.Enabled" />
+                                                        <span></span>
+                                                    </label>
+                                                </span>
                                             </div>
-                                            <!--begin::Form Group-->
                                         </div>
-
-                                        <div class="col-lg-6 col-md-6">
-                                            <!--end::Form Group-->
+                                        <div class="col-xl-4">
                                             <div class="form-group">
-                                                <label class="col-form-label">Require Client Secret</label>
+                                                <label>Require Client Secret</label>
                                                 <span class="switch switch-icon">
                                                     <label>
                                                         <input type="checkbox" asp-for="ClientApiDto.RequireClientSecret" />
@@ -220,12 +192,10 @@
                                                     </label>
                                                 </span>
                                             </div>
-                                            <!--end::Form Group-->
                                         </div>
-                                        <div class="col-lg-6 col-md-6">
-                                            <!--end::Form Group-->
+                                        <div class="col-xl-4">
                                             <div class="form-group">
-                                                <label class="col-form-label">Require PKCE</label>
+                                                <label>Require PKCE</label>
                                                 <span class="switch switch-icon">
                                                     <label>
                                                         <input type="checkbox" asp-for="ClientApiDto.RequirePkce" />
@@ -233,12 +203,10 @@
                                                     </label>
                                                 </span>
                                             </div>
-                                            <!--end::Form Group-->
                                         </div>
-                                        <div class="col-lg-6 col-md-6">
-                                            <!--end::Form Group-->
+                                        <div class="col-xl-4">
                                             <div class="form-group">
-                                                <label class="col-form-label">Allow Plain Text Pkce</label>
+                                                <label>Allow Plain Text Pkce</label>
                                                 <span class="switch switch-icon">
                                                     <label>
                                                         <input type="checkbox" asp-for="ClientApiDto.AllowPlainTextPkce" />
@@ -246,12 +214,10 @@
                                                     </label>
                                                 </span>
                                             </div>
-                                            <!--end::Form Group-->
                                         </div>
-                                        <div class="col-lg-6 col-md-6">
-                                            <!--end::Form Group-->
+                                        <div class="col-xl-4">
                                             <div class="form-group">
-                                                <label class="col-form-label">Allow Offline Access</label>
+                                                <label>Allow Offline Access</label>
                                                 <span class="switch switch-icon">
                                                     <label>
                                                         <input type="checkbox" asp-for="ClientApiDto.AllowOfflineAccess" />
@@ -259,12 +225,10 @@
                                                     </label>
                                                 </span>
                                             </div>
-                                            <!--end::Form Group-->
                                         </div>
-                                        <div class="col-lg-6 col-md-6">
-                                            <!--end::Form Group-->
+                                        <div class="col-xl-4">
                                             <div class="form-group">
-                                                <label class="col-form-label">Allow Access Token Via Browser</label>
+                                                <label>Allow Access Token Via Browser</label>
                                                 <span class="switch switch-icon">
                                                     <label>
                                                         <input type="checkbox" asp-for="ClientApiDto.AllowAccessTokensViaBrowser" />
@@ -272,51 +236,39 @@
                                                     </label>
                                                 </span>
                                             </div>
-                                            <!--end::Form Group-->
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="font-size-h6 font-weight-bolder text-dark">Allowed Scopes</label>
-
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="font-size-h6 font-weight-bolder text-dark">Redirect Uris</label>
-
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="font-size-h6 font-weight-bolder text-dark">Allowed Grant Types</label>
-
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="font-size-h6 font-weight-bolder text-dark">Client Secrets</label>
-                                            <button class="btn btn-primary">Manage Client Secrets</button>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="font-size-h6 font-weight-bolder text-dark">Properties</label>
-                                            <button class="btn btn-primary">Manage Client Properties</button>
                                         </div>
                                     </div>
-                                    <!--begin::Row-->
+                                    <div class="form-group">
+                                        <label class="font-size-h6 font-weight-bolder text-dark">Allowed Scopes</label>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-size-h6 font-weight-bolder text-dark">Redirect Uris</label>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-size-h6 font-weight-bolder text-dark">Allowed Grant Types</label>
+
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-size-h6 font-weight-bolder text-dark">Client Secrets</label>
+                                        <button class="btn btn-primary">Manage Client Secrets</button>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="font-size-h6 font-weight-bolder text-dark">Properties</label>
+                                        <button class="btn btn-primary">Manage Client Properties</button>
+                                    </div>
                                 </div>
-                                <!--end: Wizard Step 2-->
-                                <!--begin: Wizard Step 3-->
+                                <!--end::Wizard Step 2-->
+                                <!--begin::Wizard Step 3-->
                                 <div class="pb-5" data-wizard-type="step-content">
-                                    <!--begin::Title-->
-                                    <div class="pb-10 pb-lg-15">
-                                        <h3 class="font-weight-bolder text-dark font-size-h2">Authentication/Logout</h3>
-                                        <div class="text-muted font-weight-bold font-size-h5">
-                                            Setup your Authentication
-                                        </div>
-                                    </div>
-                                    <!--begin::Title-->
-                                    <!--begin::Form Group-->
+                                    <h4 class="mb-10 font-weight-bold text-dark">Setup your Authentication</h4>
                                     <div class="form-group">
-                                        <label class="font-size-h6 font-weight-bolder text-dark">Front Channel Logout Uri</label>
-                                        <input type="text" class="form-control h-auto p-5 border-0 rounded-lg font-size-h6" asp-for="ClientApiDto.FrontChannelLogoutUri" placeholder="Front Channel Logout Uri" />
+                                        <label>Front Channel Logout Uri</label>
+                                        <input type="text" class="form-control form-control-solid form-control-lg" asp-for="ClientApiDto.FrontChannelLogoutUri" placeholder="Client ID" />
                                     </div>
-                                    <!--end::Form Group-->
-                                    <!--end::Form Group-->
                                     <div class="form-group">
-                                        <label class="col-form-label">Front Channel Logout Session Required</label>
+                                        <label>Front Channel Logout Session Required</label>
                                         <span class="switch switch-icon">
                                             <label>
                                                 <input type="checkbox" asp-for="ClientApiDto.FrontChannelLogoutSessionRequired" />
@@ -324,18 +276,25 @@
                                             </label>
                                         </span>
                                     </div>
-                                    <!--end::Form Group-->
-                                    <!--begin::Form Group-->
                                     <div class="form-group">
-                                        <label class="font-size-h6 font-weight-bolder text-dark">Back Channel Logout Uri</label>
-                                        <input type="text" class="form-control h-auto p-5 border-0 rounded-lg font-size-h6" asp-for="ClientApiDto.BackChannelLogoutUri" placeholder="Back Channel Logout Uri" />
+                                        <label>Back Channel Logout Uri</label>
+                                        <input type="text" class="form-control form-control-solid form-control-lg" asp-for="ClientApiDto.BackChannelLogoutUri" placeholder="Client ID" />
                                     </div>
-                                    <!--end::Form Group-->
                                     <div class="row">
-                                        <div class="col-lg-6 col-md-6">
-                                            <!--end::Form Group-->
+                                        <div class="col-xl-4">
                                             <div class="form-group">
-                                                <label class="col-form-label">Back Channel Logout Session Required</label>
+                                                <label>Front Channel Logout Session Required</label>
+                                                <span class="switch switch-icon">
+                                                    <label>
+                                                        <input type="checkbox" asp-for="ClientApiDto.FrontChannelLogoutSessionRequired" />
+                                                        <span></span>
+                                                    </label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <div class="form-group">
+                                                <label>Back Channel Logout Session Required</label>
                                                 <span class="switch switch-icon">
                                                     <label>
                                                         <input type="checkbox" asp-for="ClientApiDto.BackChannelLogoutSessionRequired" />
@@ -343,12 +302,10 @@
                                                     </label>
                                                 </span>
                                             </div>
-                                            <!--end::Form Group-->
                                         </div>
-                                        <div class="col-lg-6 col-md-6">
-                                            <!--end::Form Group-->
+                                        <div class="col-xl-4">
                                             <div class="form-group">
-                                                <label class="col-form-label">Allow Access Token Via Browser</label>
+                                                <label>Allow Access Token Via Browser</label>
                                                 <span class="switch switch-icon">
                                                     <label>
                                                         <input type="checkbox" asp-for="ClientApiDto.EnableLocalLogin" />
@@ -356,114 +313,280 @@
                                                     </label>
                                                 </span>
                                             </div>
-                                            <!--end::Form Group-->
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label class="font-size-h6 font-weight-bolder text-dark">Post Logout Redirect Uris</label>
-
                                     </div>
                                     <div class="form-group">
                                         <label class="font-size-h6 font-weight-bolder text-dark">dentity Provider Restrictions</label>
-
                                     </div>
                                 </div>
-                                <!--end: Wizard Step 3-->
+                                <!--end::Wizard Step 3-->
+                                <!--begin::Wizard Step 4-->
                                 <div class="pb-5" data-wizard-type="step-content">
-                                    <!--begin::Title-->
-                                    <div class="pb-10 pb-lg-15">
-                                        <h3 class="font-weight-bolder text-dark font-size-h2">Token</h3>
-                                        <div class="text-muted font-weight-bold font-size-h5">
-                                            Setup your Token
-                                        </div>
-                                    </div>
-                                    <!--begin::Title-->
-                                    <!--begin::Form Group-->
+                                    <h4 class="mb-10 font-weight-bold text-dark">Setup Token</h4>
+                                    <!--begin::Input-->
                                     <div class="form-group">
-                                        <label class="font-size-h6 font-weight-bolder text-dark">Client Claims Prefix</label>
-                                        <input type="text" class="form-control h-auto p-5 border-0 rounded-lg font-size-h6" asp-for="ClientApiDto.ClientClaimsPrefix" placeholder="Client Claims Prefix" />
+                                        <label>Client Claims Prefix</label>
+                                        <input type="text" class="form-control form-control-solid form-control-lg" asp-for="ClientApiDto.ClientClaimsPrefix" />
                                     </div>
-                                    <!--end::Form Group-->
-                                    <!--begin::Form Group-->
+                                    <!--end::Input-->
+                                    <!--begin::Input-->
                                     <div class="form-group">
-                                        <label class="font-size-h6 font-weight-bolder text-dark">Pair Wise Subject Salt</label>
-                                        <input type="text" class="form-control h-auto p-5 border-0 rounded-lg font-size-h6" asp-for="ClientApiDto.PairWiseSubjectSalt" placeholder="Client Claims Prefix" />
+                                        <label>Pair Wise Subject Salt</label>
+                                        <input type="text" class="form-control form-control-solid form-control-lg" asp-for="ClientApiDto.PairWiseSubjectSalt" />
                                     </div>
-                                    <!--end::Form Group-->
+                                    <!--end::Input-->
                                     <div class="row">
-                                        <div class="col-lg-6 col-md-6">
+                                        <div class="col-xl-4">
+                                            <!--begin::Input-->
                                             <div class="form-group">
-                                                <label class="col-form-label">Identity Token Lifetime</label>
-                                                <input type="text" class="form-control h-auto p-5 border-0 rounded-lg" asp-for="ClientApiDto.IdentityTokenLifetime" placeholder="Identity Token Lifetime" />
+                                                <label>Identity Token Lifetime</label>
+                                                <input type="text" class="form-control form-control-solid form-control-lg" asp-for="ClientApiDto.IdentityTokenLifetime" />
                                             </div>
+                                            <!--end::Input-->
                                         </div>
-                                        <div class="col-lg-6 col-md-6">
+                                        <div class="col-xl-4">
+                                            <!--begin::Input-->
                                             <div class="form-group">
-                                                <label class="col-form-label">Access Token Lifetime</label>
-                                                <input type="text" class="form-control h-auto p-5 border-0 rounded-lg" asp-for="ClientApiDto.AccessTokenLifetime" placeholder="Access Token Lifetime" />
+                                                <label>Access Token Lifetime</label>
+                                                <input type="text" class="form-control form-control-solid form-control-lg" asp-for="ClientApiDto.AccessTokenLifetime" />
                                             </div>
+                                            <!--end::Input-->
                                         </div>
-                                        <div class="col-lg-6 col-md-6">
+                                        <div class="col-xl-4">
+                                            <!--begin::Input-->
                                             <div class="form-group">
-                                                <label class="col-form-label">Access Token Type</label>
-                                                <select class="form-control h-auto p-5 border-0 rounded-lg" asp-for="ClientApiDto.AccessTokenLifetime">
+                                                <label>Access Token Type</label>
+                                                <select asp-for="ClientApiDto.AccessTokenType" class="form-control form-control-solid form-control-lg">
+                                                    @if (Model.ClientApiDto.AccessTokenType == 0)
+                                                    {
+                                                        <option value="0" selected>JWT</option>
+                                                        <option value="1">Reference</option>
+                                                    }
+                                                    else if (Model.ClientApiDto.AccessTokenType == 1)
+                                                    {
+                                                        <option value="0">JWT</option>
+                                                        <option value="1" selected>Reference</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="0" selected>JWT</option>
+                                                        <option value="1">Reference</option>
+                                                    }
 
                                                 </select>
+
+                                            </div>
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <!--begin::Input-->
+                                            <div class="form-group">
+                                                <label>Authorization Code</label>
+                                                <input type="text" class="form-control form-control-solid form-control-lg" asp-for="ClientApiDto.AuthorizationCodeLifetime" />
+                                            </div>
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <!--begin::Input-->
+                                            <div class="form-group">
+                                                <label>Absolute Refresh Token</label>
+                                                <input type="text" class="form-control form-control-solid form-control-lg" asp-for="ClientApiDto.AbsoluteRefreshTokenLifetime" />
+                                            </div>
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <!--begin::Input-->
+                                            <div class="form-group">
+                                                <label>Sliding Refresh Token</label>
+                                                <input type="text" class="form-control form-control-solid form-control-lg" asp-for="ClientApiDto.SlidingRefreshTokenLifetime" />
+                                            </div>
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <!--begin::Input-->
+                                            <div class="form-group">
+                                                <label>Refresh Token Usage</label>
+                                                <select asp-for="ClientApiDto.RefreshTokenUsage" class="form-control form-control-solid form-control-lg">
+                                                    @if (Model.ClientApiDto.RefreshTokenUsage == 0)
+                                                    {
+                                                        <option value="0" selected>Reuse</option>
+                                                        <option value="1">One Time Only</option>
+                                                    }
+                                                    else if (Model.ClientApiDto.RefreshTokenUsage == 1)
+                                                    {
+                                                        <option value="0">Reuse</option>
+                                                        <option value="1" selected>One Time Only</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="0" selected>Reuse</option>
+                                                        <option value="1">One Time Only</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <!--begin::Input-->
+                                            <div class="form-group">
+                                                <label>Refresh Token Expiration</label>
+                                                <select asp-for="ClientApiDto.RefreshTokenExpiration" class="form-control form-control-solid form-control-lg">
+                                                    @if (Model.ClientApiDto.RefreshTokenUsage == 0)
+                                                    {
+                                                        <option value="0" selected>Sliding</option>
+                                                        <option value="1">Absolute</option>
+                                                    }
+                                                    else if (Model.ClientApiDto.RefreshTokenUsage == 1)
+                                                    {
+                                                        <option value="0">Sliding</option>
+                                                        <option value="1" selected>Absolute</option>
+                                                    }
+                                                    else
+                                                    {
+                                                        <option value="0" selected>Sliding</option>
+                                                        <option value="1">Absolute</option>
+                                                    }
+                                                </select>
+                                            </div>
+                                            <!--end::Input-->
+                                        </div>
+                                        <div class="col-xl-4"></div>
+                                        <div class="col-xl-3">
+                                            <div class="form-group">
+                                                <label>Update Access Token</label>
+                                                <span class="switch switch-icon">
+                                                    <label>
+                                                        <input type="checkbox" asp-for="ClientApiDto.UpdateAccessTokenClaimsOnRefresh" />
+                                                        <span></span>
+                                                    </label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3">
+                                            <div class="form-group">
+                                                <label>Include Jwt Id</label>
+                                                <span class="switch switch-icon">
+                                                    <label>
+                                                        <input type="checkbox" asp-for="ClientApiDto.IncludeJwtId" />
+                                                        <span></span>
+                                                    </label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3">
+                                            <div class="form-group">
+                                                <label>Always Send Client</label>
+                                                <span class="switch switch-icon">
+                                                    <label>
+                                                        <input type="checkbox" asp-for="ClientApiDto.AlwaysSendClientClaims" />
+                                                        <span></span>
+                                                    </label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-3">
+                                            <div class="form-group">
+                                                <label>Always Include User</label>
+                                                <span class="switch switch-icon">
+                                                    <label>
+                                                        <input type="checkbox" asp-for="ClientApiDto.AlwaysIncludeUserClaimsInIdToken" />
+                                                        <span></span>
+                                                    </label>
+                                                </span>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
 
-                                <!--begin: Wizard Actions-->
-                                <div class="d-flex justify-content-between pt-3">
+                                </div>
+                                <!--end::Wizard Step 4-->
+                                <!--begin::Wizard Step 5-->
+                                <div class="pb-5" data-wizard-type="step-content">
+                                    <h4 class="mb-10 font-weight-bold text-dark">Consent Screen</h4>
+                                    <div class="row">
+                                        <div class="col-xl-4">
+                                            <div class="form-group">
+                                                <label>Require Consent</label>
+                                                <span class="switch switch-icon">
+                                                    <label>
+                                                        <input type="checkbox" asp-for="ClientApiDto.RequireConsent" />
+                                                        <span></span>
+                                                    </label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-4">
+                                            <div class="form-group">
+                                                <label>Allow Remember Consent</label>
+                                                <span class="switch switch-icon">
+                                                    <label>
+                                                        <input type="checkbox" asp-for="ClientApiDto.AllowRememberConsent" />
+                                                        <span></span>
+                                                    </label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!--begin::Input-->
+                                    <div class="form-group">
+                                        <label>Client Uri</label>
+                                        <input type="text" class="form-control form-control-solid form-control-lg" asp-for="ClientApiDto.ClientUri" />
+                                    </div>
+                                    <!--end::Input-->
+                                    <!--begin::Input-->
+                                    <div class="form-group">
+                                        <label>Logo Uri</label>
+                                        <input type="text" class="form-control form-control-solid form-control-lg" asp-for="ClientApiDto.LogoUri" />
+                                    </div>
+                                    <!--end::Input-->
+
+                                </div>
+                                <!--end::Wizard Step 5-->
+                                <!--begin::Wizard Step 6-->
+                                <div class="pb-5" data-wizard-type="step-content">
+                                    <!--begin::Section-->
+                                    <h4 class="mb-10 font-weight-bold text-dark">Device Flow</h4>
+                                    <!--begin::Input-->
+                                    <div class="form-group">
+                                        <label>User Code Type</label>
+                                        <input type="text" class="form-control form-control-solid form-control-lg" asp-for="ClientApiDto.UserCodeType" />
+                                    </div>
+                                    <!--end::Input-->
+                                    <!--begin::Input-->
+                                    <div class="form-group">
+                                        <label>Device Code Lifetime</label>
+                                        <input type="text" class="form-control form-control-solid form-control-lg" asp-for="ClientApiDto.DeviceCodeLifetime" />
+                                    </div>
+                                    <!--end::Input-->
+
+                                </div>
+                                <!--end::Wizard Step 6-->
+                                <!--begin::Wizard Actions-->
+                                <div class="d-flex justify-content-between border-top mt-5 pt-10">
                                     <div class="mr-2">
-                                        <button type="button" class="btn btn-light-primary font-weight-bolder font-size-h6 pl-6 pr-8 py-4 my-3 mr-3" data-wizard-type="action-prev">
-                                            <span class="svg-icon svg-icon-md mr-1">
-                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Left-2.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                        <polygon points="0 0 24 0 24 24 0 24" />
-                                                        <rect fill="#000000" opacity="0.3" transform="translate(15.000000, 12.000000) scale(-1, 1) rotate(-90.000000) translate(-15.000000, -12.000000) " x="14" y="7" width="2" height="10" rx="1" />
-                                                        <path d="M3.7071045,15.7071045 C3.3165802,16.0976288 2.68341522,16.0976288 2.29289093,15.7071045 C1.90236664,15.3165802 1.90236664,14.6834152 2.29289093,14.2928909 L8.29289093,8.29289093 C8.67146987,7.914312 9.28105631,7.90106637 9.67572234,8.26284357 L15.6757223,13.7628436 C16.0828413,14.136036 16.1103443,14.7686034 15.7371519,15.1757223 C15.3639594,15.5828413 14.7313921,15.6103443 14.3242731,15.2371519 L9.03007346,10.3841355 L3.7071045,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(9.000001, 11.999997) scale(-1, -1) rotate(90.000000) translate(-9.000001, -11.999997) " />
-                                                    </g>
-                                                </svg><!--end::Svg Icon-->
-                                            </span>Previous
+                                        <button type="button" class="btn btn-light-primary font-weight-bold text-uppercase px-9 py-4" data-wizard-type="action-prev">
+                                            Previous
                                         </button>
                                     </div>
                                     <div>
-                                        <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-5 pr-8 py-4 my-3" data-wizard-type="action-submit" type="submit" id="kt_login_signup_form_submit_button">
+                                        <button type="submit" class="btn btn-success font-weight-bold text-uppercase px-9 py-4" data-wizard-type="action-submit">
                                             Submit
-                                            <span class="svg-icon svg-icon-md ml-2">
-                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                        <polygon points="0 0 24 0 24 24 0 24" />
-                                                        <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000) " x="7.5" y="7.5" width="2" height="9" rx="1" />
-                                                        <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) " />
-                                                    </g>
-                                                </svg><!--end::Svg Icon-->
-                                            </span>
                                         </button>
-                                        <button type="button" class="btn btn-primary font-weight-bolder font-size-h6 pl-8 pr-4 py-4 my-3" data-wizard-type="action-next">
-                                            Next Step
-                                            <span class="svg-icon svg-icon-md ml-1">
-                                                <!--begin::Svg Icon | path:assets/media/svg/icons/Navigation/Right-2.svg--><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
-                                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
-                                                        <polygon points="0 0 24 0 24 24 0 24" />
-                                                        <rect fill="#000000" opacity="0.3" transform="translate(8.500000, 12.000000) rotate(-90.000000) translate(-8.500000, -12.000000) " x="7.5" y="7.5" width="2" height="9" rx="1" />
-                                                        <path d="M9.70710318,15.7071045 C9.31657888,16.0976288 8.68341391,16.0976288 8.29288961,15.7071045 C7.90236532,15.3165802 7.90236532,14.6834152 8.29288961,14.2928909 L14.2928896,8.29289093 C14.6714686,7.914312 15.281055,7.90106637 15.675721,8.26284357 L21.675721,13.7628436 C22.08284,14.136036 22.1103429,14.7686034 21.7371505,15.1757223 C21.3639581,15.5828413 20.7313908,15.6103443 20.3242718,15.2371519 L15.0300721,10.3841355 L9.70710318,15.7071045 Z" fill="#000000" fill-rule="nonzero" transform="translate(14.999999, 11.999997) scale(1, -1) rotate(90.000000) translate(-14.999999, -11.999997) " />
-                                                    </g>
-                                                </svg><!--end::Svg Icon-->
-                                            </span>
+                                        <button type="button" class="btn btn-primary font-weight-bold text-uppercase px-9 py-4" data-wizard-type="action-next">
+                                            Next
                                         </button>
                                     </div>
                                 </div>
-                                <!--end: Wizard Actions-->
+                                <!--end::Wizard Actions-->
                             </form>
+                            <!--end::Wizard Form-->
                         </div>
-                        <!--end::Form-->
                     </div>
-                    <!--end::Content-->
+                    <!--end::Wizard Body-->
                 </div>
-                <!--end::Wizard 5-->
+                <!--end::Wizard-->
             </div>
             <!--end::Card Body-->
         </div>
@@ -473,247 +596,189 @@
 </div>
 <!--end::Entry-->
 
-
 @section Scripts{
+    <script src="~/js/jquery.unobtrusive-ajax.min.js"></script>
+    <script>
 
-    @*<script src="~/assets/js/pages/custom/wizard/wizard-5.js"></script>*@
-<script>
+        // Class definition
+        var KTWizard1 = function () {
+            // Base elements
+            var _wizardEl;
+            var _formEl;
+            var _wizard;
+            var _validations = [];
 
-    // Class definition
-    var KTWizard5 = function () {
-        // Base elements
-        var _wizardEl;
-        var _formEl;
-        var _wizard;
-        var _validations = [];
-
-        // Private functions
-        var initWizard = function () {
-            // Initialize form wizard
-            _wizard = new KTWizard(_wizardEl, {
-                startStep: 1, // initial active step number
-                clickableSteps: true  // allow step clicking
-            });
-
-            // Validation before going to next page
-            _wizard.on('beforeNext', function (wizard) {
-                // Don't go to the next step yet
-                _wizard.stop();
-
-                // Validate form
-                var validator = _validations[wizard.getStep() - 1]; // get validator for currnt step
-                validator.validate().then(function (status) {
-                    if (status == 'Valid') {
-                        _wizard.goNext();
-                        KTUtil.scrollTop();
-                    } else {
-                        Swal.fire({
-                            text: "Sorry, looks like there are some errors detected, please try again.",
-                            icon: "error",
-                            buttonsStyling: false,
-                            confirmButtonText: "Ok, got it!",
-                            customClass: {
-                                confirmButton: "btn font-weight-bold btn-light"
-                            }
-                        }).then(function () {
-                            KTUtil.scrollTop();
-                        });
-                    }
+            // Private functions
+            var initWizard = function () {
+                // Initialize form wizard
+                _wizard = new KTWizard(_wizardEl, {
+                    startStep: 1, // initial active step number
+                    clickableSteps: true  // allow step clicking
                 });
-            });
 
-            // Change event
-            _wizard.on('change', function (wizard) {
-                KTUtil.scrollTop();
-            });
-        }
+                // Validation before going to next page
+                _wizard.on('beforeNext', function (wizard) {
+                    // Don't go to the next step yet
+                    _wizard.stop();
 
-        var initValidation = function () {
-            // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
-            // Step 1
-            _validations.push(FormValidation.formValidation(
-                _formEl,
-                {
-                    fields: {
-                        firstname: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'First name is required'
+                    // Validate form
+                    var validator = _validations[wizard.getStep() - 1]; // get validator for currnt step
+                    validator.validate().then(function (status) {
+                        if (status == 'Valid') {
+                            _wizard.goNext();
+                            KTUtil.scrollTop();
+                        } else {
+                            Swal.fire({
+                                text: "Sorry, looks like there are some errors detected, please try again.",
+                                icon: "error",
+                                buttonsStyling: false,
+                                confirmButtonText: "Ok, got it!",
+                                customClass: {
+                                    confirmButton: "btn font-weight-bold btn-light"
                                 }
-                            }
-                        },
-                        lastname: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Last name is required'
-                                }
-                            }
-                        },
-                        phone: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Phone is required'
-                                }
-                            }
+                            }).then(function () {
+                                KTUtil.scrollTop();
+                            });
                         }
-                    },
-                    plugins: {
-                        trigger: new FormValidation.plugins.Trigger(),
-                        bootstrap: new FormValidation.plugins.Bootstrap()
-                    }
-                }
-            ));
+                    });
+                });
 
-            // Step 2
-            _validations.push(FormValidation.formValidation(
-                _formEl,
-                {
-                    fields: {
-                        address1: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Address is required'
-                                }
-                            }
-                        },
-                        address2: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Address is required'
-                                }
-                            }
-                        },
-                        postcode: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Postcode is required'
-                                }
-                            }
-                        },
-                        city: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'City is required'
-                                }
-                            }
-                        },
-                        state: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'State is required'
-                                }
-                            }
-                        },
-                        country: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Country is required'
-                                }
-                            }
-                        }
-                    },
-                    plugins: {
-                        trigger: new FormValidation.plugins.Trigger(),
-                        bootstrap: new FormValidation.plugins.Bootstrap()
-                    }
-                }
-            ));
-            // Step 3
-            _validations.push(FormValidation.formValidation(
-                _formEl,
-                {
-                    fields: {
-                        address1: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Address is required'
-                                }
-                            }
-                        },
-                        address2: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Address is required'
-                                }
-                            }
-                        }
-                    },
-                    plugins: {
-                        trigger: new FormValidation.plugins.Trigger(),
-                        bootstrap: new FormValidation.plugins.Bootstrap()
-                    }
-                }
-            ));
-            // Step 4
-            _validations.push(FormValidation.formValidation(
-                _formEl,
-                {
-                    fields: {
-                        address1: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Address is required'
-                                }
-                            }
-                        },
-                        address2: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Address is required'
-                                }
-                            }
-                        }
-                    },
-                    plugins: {
-                        trigger: new FormValidation.plugins.Trigger(),
-                        bootstrap: new FormValidation.plugins.Bootstrap()
-                    }
-                }
-            ));
-            // Step 5
-            _validations.push(FormValidation.formValidation(
-                _formEl,
-                {
-                    fields: {
-                        address1: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Address is required'
-                                }
-                            }
-                        },
-                        address2: {
-                            validators: {
-                                notEmpty: {
-                                    message: 'Address is required'
-                                }
-                            }
-                        }
-                    },
-                    plugins: {
-                        trigger: new FormValidation.plugins.Trigger(),
-                        bootstrap: new FormValidation.plugins.Bootstrap()
-                    }
-                }
-            ));
-
-        }
-
-        return {
-            // public functions
-            init: function () {
-                _wizardEl = KTUtil.getById('kt_wizard');
-                _formEl = KTUtil.getById('kt_wizard_form');
-
-                initWizard();
-                initValidation();
+                // Change event
+                _wizard.on('change', function (wizard) {
+                    KTUtil.scrollTop();
+                });
             }
+
+            var initValidation = function () {
+                // Init form validation rules. For more info check the FormValidation plugin's official documentation:https://formvalidation.io/
+                // Step 1
+                _validations.push(FormValidation.formValidation(
+                    _formEl,
+                    {
+                        fields: {
+
+                        },
+                        plugins: {
+                            trigger: new FormValidation.plugins.Trigger(),
+                            bootstrap: new FormValidation.plugins.Bootstrap()
+                        }
+                    }
+                ));
+
+                // Step 2
+                _validations.push(FormValidation.formValidation(
+                    _formEl,
+                    {
+                        fields: {
+
+                        },
+                        plugins: {
+                            trigger: new FormValidation.plugins.Trigger(),
+                            bootstrap: new FormValidation.plugins.Bootstrap()
+                        }
+                    }
+                ));
+
+                // Step 3
+                _validations.push(FormValidation.formValidation(
+                    _formEl,
+                    {
+                        fields: {
+
+                        },
+                        plugins: {
+                            trigger: new FormValidation.plugins.Trigger(),
+                            bootstrap: new FormValidation.plugins.Bootstrap()
+                        }
+                    }
+                ));
+
+                // Step 4
+                _validations.push(FormValidation.formValidation(
+                    _formEl,
+                    {
+                        fields: {
+
+                        },
+                        plugins: {
+                            trigger: new FormValidation.plugins.Trigger(),
+                            bootstrap: new FormValidation.plugins.Bootstrap()
+                        }
+                    }
+                ));
+                // Step 5
+                _validations.push(FormValidation.formValidation(
+                    _formEl,
+                    {
+                        fields: {
+
+                        },
+                        plugins: {
+                            trigger: new FormValidation.plugins.Trigger(),
+                            bootstrap: new FormValidation.plugins.Bootstrap()
+                        }
+                    }
+                ));
+            }
+
+            return {
+                // public functions
+                init: function () {
+                    _wizardEl = KTUtil.getById('kt_wizard_v1');
+                    _formEl = KTUtil.getById('kt_form');
+
+                    initWizard();
+                    initValidation();
+                }
+            };
+        }();
+
+        jQuery(document).ready(function () {
+            KTWizard1.init();
+        });
+
+          //begin submit form
+        begin = function (xhr) {
+            Loading('body');
         };
-    }();
-
-    jQuery(document).ready(function () {
-        KTWizard5.init();
-    });
-
-</script>
+        //complete submit form
+        completed = function (xhr) {
+            CompleteLoad('body');
+            let data = xhr.responseJSON;
+            console.log(data);
+                    @*let data = xhr.responseJSON;
+                     if (data.code == 200) {
+                         setTimeout(function () {
+                             CompleteLoad('body');
+                             window.location.href = '@Url.Action("Edit", "MyApps")/?AppID=' + data.Id + '&revision=' + data.rev;
+                         }, 1000);
+                     }
+                     else
+                     {
+                         CompleteLoad('body');
+                         Swal.fire({
+                             text: data.message,
+                             icon: "error",
+                             buttonsStyling: false,
+                             confirmButtonText: "Cancel",
+                             customClass: {
+                                 confirmButton: "btn font-weight-bold btn-light-danger"
+                             }
+                         });
+                     }*@
+        };
+        //fail submit form
+        failed = function (xhr) {
+            CompleteLoad('body');
+            Swal.fire({
+                text: xhr.statusText,
+                icon: "error",
+                buttonsStyling: false,
+                confirmButtonText: "Cancel",
+                customClass: {
+                    confirmButton: "btn font-weight-bold btn-light-danger"
+                }
+            });
+        };
+    </script>
 }

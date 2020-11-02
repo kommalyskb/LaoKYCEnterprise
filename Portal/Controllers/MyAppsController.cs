@@ -35,9 +35,12 @@ namespace Portal.Controllers
 
             myAppClient = new MyAppClient(couchContext, dBConfig, apiKYC);
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int? limit, int? page)
         {
-            var result = await myAppClient.ListAll();
+            limit = limit ?? 20;
+            page = page ?? 0;
+            string UserId = User.Claims.Where(x => x.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value;
+            var result = await myAppClient.ListAll(UserId, limit, page);
             return View(result.ToList());
         }
 
@@ -59,36 +62,58 @@ namespace Portal.Controllers
                     var result = await myAppClient.CreateAppClient(appClient);
                     if (result)
                     {
-                        return Json(new { Code = 200, Message = "ID is not incorrect." });
-
+                        return Json(new { Code = 200, Message = "Sucess", Id = appClient.AppID });
+                    }
+                    else
+                    {
+                        return Json(new { Code = 400, Message = "Fail" });
                     }
                  
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    return Json(new { Code = 501, Message = ex.Message });
                 }
                
             }
-            return View();
+            return Json(new { Code = 400, Message = "Your input is null" });
         }
 
         public async Task<IActionResult> Edit(AppClientDto appClient)
         {
             //Query from api KYC
             var resultClient = await apiKYC.QueryClient(appClient.AppID);
+
+            AppClientDto appClientDto = new AppClientDto()
+            {
+                AppID = appClient.AppID,
+                ClientId = resultClient.ClientId,
+                ClientName = resultClient.ClientName,
+                Description = resultClient.Description,
+                Id = appClient.Id,
+                Revision = appClient.Revision
+            };
+
             UpdateClientModel model = new UpdateClientModel()
             {
-               AppClientDto = appClient,
+               AppClientDto = appClientDto,
                ClientApiDto = resultClient
             };
             return View(model);
         }
         [HttpPost]
-        public IActionResult Edit(UpdateClientModel updateClientModel)
+        public async Task<IActionResult> Edit(UpdateClientModel param)
         {
-
-            return View();
+            var result = await myAppClient.UpdateAppClient(param.ClientApiDto, param.AppClientDto);
+            if (result)
+            {
+                return Json(new { Code = 200, Message = "Update success." });
+            }
+            else
+            {
+                return Json(new { Code = 501, Message = "Update fail." });
+            }
+          
         }
         [HttpPost]
         public async Task<IActionResult> DeleteAsync(string id, string rev)

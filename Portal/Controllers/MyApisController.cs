@@ -56,23 +56,32 @@ namespace Portal.Controllers
                     resource.UserID = UserId;
                     resource.Created = string.Format("{0:yyyy-MM-dd HH:mm:ss}", DateTime.Now);
                     var result = await myAPIResouce.CreateResource(resource);
+                    if (result)
+                    {
+                        return Json(new { Code = 200, Message = "Sucess", Id = resource.ResID });
+                    }
+                    else
+                    {
+                        return Json(new { Code = 400, Message = "Fail" });
+                    }
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-                    throw;
+                    return Json(new { Code = 501, Message = ex.Message });
                 }
 
             }
-            return View();
+            return Json(new { Code = 400, Message = "Your input is null" });
         }
 
         public async Task<IActionResult> Edit(APIResource resource)
         {
             //Query from api KYC
+            var resultClient = await apiKYC.QueryAPI(resource.ResID);
 
             UpdateApiResource model = new UpdateApiResource()
             {
-               
+              
             };
             return View(model);
         }

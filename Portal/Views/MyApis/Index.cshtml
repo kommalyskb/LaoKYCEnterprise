@@ -45,7 +45,6 @@
         <table class="table table-separate table-head-custom table-checkable" id="kt_datatable">
             <thead>
                 <tr>
-                    <th>API ID</th>
                     <th>API Name</th>
                     <th>Display name</th>
                     <th>Description</th>
@@ -60,13 +59,12 @@
                     foreach (var item in Model)
                     {
                         <tr>
-                            <td>@item.Id</td>
                             <td>@item.ResName</td>
                             <td>@item.DisplayName</td>
                             <td>@item.Description</td>
                             <td>@item.Created</td>
                             <td nowrap>
-                                <a asp-action="Edit" asp-route-id="@item.Id" asp-route-revision="@item.Revision" asp-route-description="@item.Description" asp-route-userid="@item.UserID" asp-route-created="@item.Created" class="btn btn-icon btn-light btn-hover-success btn-sm" title="Edit details">
+                                <a asp-action="Edit" asp-route-resid="@item.ResID" asp-route-revision="@item.Revision"  class="btn btn-icon btn-light btn-hover-success btn-sm" title="Edit details">
                                     <span class="svg-icon svg-icon-md svg-icon-success">
                                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="24px" height="24px" viewBox="0 0 24 24" version="1.1">
                                             <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
@@ -138,8 +136,10 @@
         //List item click for delete
         $(document).on('click', '.delItem', function () {
             let id = $(this).data('id');
+            let rev = $(this).data('rev');
             let name = $(this).data('name');
             $('#id').val(id);
+            $('#rev').val(rev);
             //Message comfirm delete item
             Swal.fire({
                 text: 'Do you want to delete "' + name + '"?',

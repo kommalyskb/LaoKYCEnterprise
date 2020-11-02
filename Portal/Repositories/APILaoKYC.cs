@@ -1,6 +1,7 @@
 ﻿using IdentityModel.Client;
 using Shared.Configs;
 using Shared.DTOs;
+using Shared.Entities;
 using Shared.Helpers;
 using Shared.Repositories;
 using System;
@@ -338,6 +339,47 @@ namespace Portal.Repositories
             var response = await apiClient.PostAsync(IdentityEndpoint.ResourceUri + $"/{id.Value}/Secrets", stringContent);
 
             return response.IsSuccessStatusCode;
+        }
+
+        public async Task<APIResource> QueryAPI(int? id)
+        {
+            // discover endpoints from metadata
+            var client = new HttpClient();
+            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery);
+            if (disco.IsError)
+            {
+                return new APIResource();
+            }
+
+            // request token
+            var req = new PasswordTokenRequest
+            {
+                Address = disco.TokenEndpoint,
+
+                ClientId = IdentityEndpoint.ClientID,
+                ClientSecret = IdentityEndpoint.Secret,
+                Scope = IdentityEndpoint.Scopes,
+                UserName = IdentityEndpoint.UserName,
+                Password = IdentityEndpoint.Password
+            };
+            var tokenResponse = await client.RequestPasswordTokenAsync(req);
+
+            if (tokenResponse.IsError)
+            {
+                return new APIResource();
+            }
+
+            var apiClient = new HttpClient();
+            apiClient.SetBearerToken(tokenResponse.AccessToken);
+
+            var response = await apiClient.GetAsync($"{IdentityEndpoint.ResourceUri}/{id}");
+
+            if (response.IsSuccessStatusCode)
+            {
+                var resDeserialize = await JsonHelper.Deserialize<APIResource>(response, defaultOptions);
+                return resDeserialize;
+            }
+            return new APIResource();
         }
 
         public async Task<ClientApiDto> QueryClient(int? id)

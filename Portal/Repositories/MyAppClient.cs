@@ -165,18 +165,22 @@ namespace Portal.Repositories
 
             // Get App ID from couchdb
             var appRes = await couchContext.GetAsync<AppClientDto>(couchDbHelper, id);
+            System.Threading.Thread.Sleep(500);
             if (!appRes.IsSuccess)
             {
                 return false;
             }
-
-            var res = await apiLao.RemoveClient(appRes.Content.AppID);
-
-            if (res)
+            else
             {
-                var result = await couchContext.DeleteAsync(couchDbHelper, id, rev);
-                return result.IsSuccess;
+                var res = await apiLao.RemoveClient(appRes.Content.AppID);
+
+                if (res)
+                {
+                    var result = await couchContext.DeleteAsync(couchDbHelper, id, rev);
+                    return result.IsSuccess;
+                }
             }
+
             return false;
 
             //var result = await couchContext.DeleteAsync(couchDbHelper, id, rev);
