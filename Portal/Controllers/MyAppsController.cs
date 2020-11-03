@@ -23,6 +23,7 @@ namespace Portal.Controllers
         private readonly ILogger<MyAppsController> _logger;
         private readonly IAPILaoKYC apiKYC;
         private readonly IMyAppClient myAppClient;
+        private readonly IIdentityResource identityResource;
         private ICouchContext couchContext;
         private DBConfig dBConfig;
 
@@ -35,6 +36,7 @@ namespace Portal.Controllers
             apiKYC = new APILaoKYC();
 
             myAppClient = new MyAppClient(couchContext, dBConfig, apiKYC);
+            identityResource = new IdentityResource(couchContext, dBConfig, apiKYC);
         }
         public async Task<IActionResult> Index(int? limit, int? page)
         {
@@ -84,24 +86,37 @@ namespace Portal.Controllers
         {
             //Query from api KYC
             var resultClient = await apiKYC.QueryClient(appClient.AppID); //Query Client
-          //  var resultIdentityRes = await apiKYC.QueryIdentityResource("", 1, 10); //Get Identity resource
+            var resultIdentityRes = await identityResource.ListAll(); //Get Identity resource
 
             List<SelectListItem> allowedScopes = new List<SelectListItem>();
             List<SelectListItem> redirectUris = new List<SelectListItem>();
+            List<SelectListItem> allowedGrantType = new List<SelectListItem>();
 
             #region Allow scope
-            //foreach (var item in resultIdentityRes.identityResources)
-            //{
-            //    SelectListItem selectListItem = new SelectListItem();
-            //    selectListItem.Text = item.displayName;
-            //    selectListItem.Value = item.name;
+            foreach (var item in resultIdentityRes)
+            {
+                SelectListItem selectListItem = new SelectListItem();
+                selectListItem.Text = item.displayName;
+                selectListItem.Value = item.name;
 
-            //    if (resultClient.AllowedScopes.Where(x => x.Equals(item.name)).Count() > 0)
-            //    {
-            //        selectListItem.Selected = true;
-            //    }
-            //    allowedScopes.Add(selectListItem);
-            //}
+                if (resultClient.AllowedScopes.Where(x => x.Equals(item.name)).Count() > 0)
+                {
+                    selectListItem.Selected = true;
+                }
+                allowedScopes.Add(selectListItem);
+            }
+            #endregion
+
+            #region Allow grant type
+            SelectListItem selectList = new SelectListItem();
+            selectList.Text = "hybrid";
+            selectList.Value = "hybrid";
+            if (resultClient.AllowedGrantTypes.Where(x => x.Equals("hybrid")).Count()> 0)
+            {
+                selectList.Selected = true;
+            }
+
+
             #endregion
 
             #region RedirectUris

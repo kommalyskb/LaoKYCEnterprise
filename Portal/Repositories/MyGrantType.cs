@@ -10,40 +10,40 @@ using System.Threading.Tasks;
 
 namespace Portal.Repositories
 {
-    public class IdentityResource : IIdentityResource
+    public class MyGrantType : IGrantType
     {
         private readonly ICouchContext couchContext;
         private readonly DBConfig dBConfig;
         private readonly IAPILaoKYC apiLao;
         private readonly CouchDBHelper couchDbHelper;
-  
-        public IdentityResource(ICouchContext couchContext, DBConfig dBConfig, IAPILaoKYC apiLao)
+
+        public MyGrantType(ICouchContext couchContext, DBConfig dBConfig, IAPILaoKYC apiLao)
         {
             this.couchContext = couchContext;
             this.dBConfig = dBConfig;
             this.apiLao = apiLao;
             couchDbHelper = new CouchDBHelper(dBConfig.Scheme, dBConfig.SrvAddr,
-                "identityresource", dBConfig.Username, dBConfig.Password);
+                "granttype", dBConfig.Username, dBConfig.Password);
         }
 
-        public async Task<bool> CreateIdentityResource(IdentResource identityResourcesDto)
+        public async Task<bool> CreateGrantType(GrantTypes grantTypes)
         {
-            if (identityResourcesDto.name == string.Empty)
+            if (grantTypes.Value == string.Empty)
             {
                 return false;
             }
 
-            var result = await couchContext.InsertAsync<IdentResource>(couchDbHelper, identityResourcesDto);
+            var result = await couchContext.InsertAsync<GrantTypes>(couchDbHelper, grantTypes);
 
             return result.IsSuccess;
         }
 
-        public async Task<List<IdentityResourcesDto>> ListAll()
+        public async Task<List<GrantTypeDto>> ListAll()
         {
-            var result = await couchContext.ViewQueryAsync<IdentityResourcesDto>(
+            var result = await couchContext.ViewQueryAsync<GrantTypeDto>(
                     couchDBHelper: couchDbHelper,
-                    designName: DesignName.IdentityResourceQuery,
-                    viewName: IndexName.IdentityResourceQuery_List,
+                    designName: DesignName.GrantTypeQuery,
+                    viewName: IndexName.GrantTypeQuery_List,
                     "none",
                     20,
                     0,
@@ -53,23 +53,21 @@ namespace Portal.Repositories
 
             if (result.Rows != null)
             {
-                return result.Rows.Select(x => new IdentityResourcesDto()
+                return result.Rows.Select(x => new GrantTypeDto()
                 {
                     Id = x.Id,
                     Revision = x.Value.Revision,
-                    description = x.Value.description,
-                    displayName = x.Value.displayName,
-                    idrid = x.Value.idrid,
-                    name = x.Value.name,
+                    Text = x.Value.Text,
+                    Value = x.Value.Value
                 }).ToList();
             }
             else
             {
-                return new List<IdentityResourcesDto>();
+                return new List<GrantTypeDto>();
             }
         }
 
-        public async Task<bool> RemoveIdentityResource(string id, string rev)
+        public async Task<bool> RemoveGrantType(string id, string rev)
         {
             if (id == string.Empty)
             {
@@ -77,7 +75,7 @@ namespace Portal.Repositories
             }
 
             // Get App ID from couchdb
-            var appRes = await couchContext.GetAsync<IdentityResourcesDto>(couchDbHelper, id);
+            var appRes = await couchContext.GetAsync<GrantTypeDto>(couchDbHelper, id);
             System.Threading.Thread.Sleep(500);
             if (!appRes.IsSuccess)
             {
@@ -88,18 +86,16 @@ namespace Portal.Repositories
                 var result = await couchContext.DeleteAsync(couchDbHelper, id, rev);
                 return result.IsSuccess;
             }
-
-
         }
 
-        public async Task<bool> UpdateIdentityResource(IdentityResourcesDto identityResourcesDto)
+        public async Task<bool> UpdateGrantType(GrantTypeDto grantTypeDto)
         {
-            if (identityResourcesDto is null)
+            if (grantTypeDto is null)
             {
                 return false;
             }
 
-            var result = await couchContext.EditAsync<IdentityResourcesDto>(couchDbHelper, identityResourcesDto);
+            var result = await couchContext.EditAsync<GrantTypeDto>(couchDbHelper, grantTypeDto);
             return result.IsSuccess;
         }
     }

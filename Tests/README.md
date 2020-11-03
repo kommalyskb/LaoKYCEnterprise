@@ -66,3 +66,16 @@
 ### Exceptions Cases
 ```
 ```
+## My Grant type Cases
+### Normal Cases
+```
+1.ສະແດງລາຍການ Grant type ທັງຫມົດທີ່ມີ
+2.ສ້າງ Grant type ຕາມຂໍ້ມູນເລີ່ມຕົ້ນ ສຳເລັດ
+3.ອັບເດດ Grant type ຕາມຂໍ້ມູນທີ່ກຳຫນົດ ສຳເລັດ
+4.ລຶບ Grant type ຕາມຂໍ້ມູນທີ່ກຳຫນົດ ສຳເລັດ
+### Alternatives Cases
+```
+```
+### Exceptions Cases
+```
+```

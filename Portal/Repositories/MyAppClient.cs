@@ -16,8 +16,7 @@ namespace Portal.Repositories
         private readonly DBConfig dBConfig;
         private readonly IAPILaoKYC apiLao;
         private readonly CouchDBHelper couchDbHelper;
-        private List<AppClientDto> apps;
-
+        
         public MyAppClient(ICouchContext couchContext, DBConfig dBConfig, IAPILaoKYC apiLao)
         {
             this.couchContext = couchContext;

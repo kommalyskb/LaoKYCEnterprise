@@ -20,5 +20,26 @@ namespace Shared.Configs
                 return "query";
             }
         }
+        public static string IdentityResourceQuery
+        {
+            get
+            {
+                return "query";
+            }
+        }
+        public static string AppGrantQuery
+        {
+            get
+            {
+                return "query";
+            }
+        }
+        public static string GrantTypeQuery
+        {
+            get
+            {
+                return "query";
+            }
+        }
     }
 }
