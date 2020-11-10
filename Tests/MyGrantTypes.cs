@@ -37,7 +37,7 @@ namespace Tests
         [Fact(DisplayName = "ສະແດງລາຍການ Grant type ທັງຫມົດທີ່ມີ")]
         public async Task ListAllGrantType()
         {
-            var result = await grantType.ListAll();
+            var result = await grantType.ListAll().ConfigureAwait(false);
 
             Assert.NotNull(result);
         }
@@ -51,7 +51,7 @@ namespace Tests
                 Value = value,
                 Text = text
             };
-            var result = await grantType.CreateGrantType(req);
+            var result = await grantType.CreateGrantType(req).ConfigureAwait(false);
 
             Assert.True(result);
         }
@@ -60,7 +60,7 @@ namespace Tests
         [ClassData(typeof(GrantTypeDtoTest))]
         public async Task UpdateResource(GrantTypeDto param)
         {
-            var result = await grantType.UpdateGrantType(param);
+            var result = await grantType.UpdateGrantType(param).ConfigureAwait(false);
 
             Assert.True(result);
         }
@@ -70,7 +70,7 @@ namespace Tests
         public async Task RemoveClientApp(string id, string rev)
         {
 
-            var result = await grantType.RemoveGrantType(id, rev);
+            var result = await grantType.RemoveGrantType(id, rev).ConfigureAwait(false);
 
             Assert.True(result);
         }

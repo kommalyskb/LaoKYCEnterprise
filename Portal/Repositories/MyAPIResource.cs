@@ -40,11 +40,11 @@ namespace Portal.Repositories
                 Enabled = true,
                 Name = req.ResName
             };
-            var res = await apiLao.CreateApiResource(apires);
+            var res = await apiLao.CreateApiResource(apires).ConfigureAwait(false);
             if (res)
             {
                 req.ResID = apires.Id;
-                var result = await couchContext.InsertAsync<APIResource>(couchDbHelper, req);
+                var result = await couchContext.InsertAsync<APIResource>(couchDbHelper, req).ConfigureAwait(false);
 
                 return result.IsSuccess;
             }
@@ -63,7 +63,7 @@ namespace Portal.Repositories
                     0,
                     false,
                     false
-                );
+                ).ConfigureAwait(false);
             if (result.Rows != null)
             {
                 return result.Rows.Select(x => new APIResourceDto()
@@ -95,7 +95,7 @@ namespace Portal.Repositories
                     skip,
                     false,
                     false
-                );
+                ).ConfigureAwait(false);
             if (result.Rows != null)
             {
                 return result.Rows.Select(x => new APIResourceDto()
@@ -124,8 +124,7 @@ namespace Portal.Repositories
             }
 
             // Get App ID from couchdb
-            var appRes = await couchContext.GetAsync<APIResource>(couchDbHelper, id);
-            System.Threading.Thread.Sleep(500);
+            var appRes = await couchContext.GetAsync<APIResource>(couchDbHelper, id).ConfigureAwait(false);
             if (!appRes.IsSuccess)
             {
                 return false;
@@ -133,11 +132,11 @@ namespace Portal.Repositories
             else
             {
                 
-                var res = await apiLao.RemoveResource(appRes.Content.ResID);
+                var res = await apiLao.RemoveResource(appRes.Content.ResID).ConfigureAwait(false);
 
                 if (res)
                 {
-                    var result = await couchContext.DeleteAsync(couchDbHelper, id, rev);
+                    var result = await couchContext.DeleteAsync(couchDbHelper, id, rev).ConfigureAwait(false);
                     return result.IsSuccess;
                 }
             }
@@ -157,11 +156,11 @@ namespace Portal.Repositories
                 return false;
             }
 
-            var res = await apiLao.UpdateResource(apiResourceApiDto);
+            var res = await apiLao.UpdateResource(apiResourceApiDto).ConfigureAwait(false);
 
             if (res)
             {
-                var result = await couchContext.EditAsync<APIResourceDto>(couchDbHelper, aPIResource);
+                var result = await couchContext.EditAsync<APIResourceDto>(couchDbHelper, aPIResource).ConfigureAwait(false);
                 return result.IsSuccess;
             }
             return false;

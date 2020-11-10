@@ -33,7 +33,7 @@ namespace Portal.Repositories
                 return false;
             }
 
-            var result = await couchContext.InsertAsync<IdentResource>(couchDbHelper, identityResourcesDto);
+            var result = await couchContext.InsertAsync<IdentResource>(couchDbHelper, identityResourcesDto).ConfigureAwait(false);
 
             return result.IsSuccess;
         }
@@ -49,7 +49,7 @@ namespace Portal.Repositories
                     0,
                     false,
                     false
-                );
+                ).ConfigureAwait(false);
 
             if (result.Rows != null)
             {
@@ -77,15 +77,14 @@ namespace Portal.Repositories
             }
 
             // Get App ID from couchdb
-            var appRes = await couchContext.GetAsync<IdentityResourcesDto>(couchDbHelper, id);
-            System.Threading.Thread.Sleep(500);
+            var appRes = await couchContext.GetAsync<IdentityResourcesDto>(couchDbHelper, id).ConfigureAwait(false);
             if (!appRes.IsSuccess)
             {
                 return false;
             }
             else
             {
-                var result = await couchContext.DeleteAsync(couchDbHelper, id, rev);
+                var result = await couchContext.DeleteAsync(couchDbHelper, id, rev).ConfigureAwait(false);
                 return result.IsSuccess;
             }
 
@@ -99,7 +98,7 @@ namespace Portal.Repositories
                 return false;
             }
 
-            var result = await couchContext.EditAsync<IdentityResourcesDto>(couchDbHelper, identityResourcesDto);
+            var result = await couchContext.EditAsync<IdentityResourcesDto>(couchDbHelper, identityResourcesDto).ConfigureAwait(false);
             return result.IsSuccess;
         }
     }

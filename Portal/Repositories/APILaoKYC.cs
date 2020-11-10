@@ -67,7 +67,7 @@ namespace Portal.Repositories
         {
             // discover endpoints from metadata
             var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery);
+            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery).ConfigureAwait(false);
             if (disco.IsError)
             {
                 return false;
@@ -84,7 +84,7 @@ namespace Portal.Repositories
                 UserName = IdentityEndpoint.UserName,
                 Password = IdentityEndpoint.Password
             };
-            var tokenResponse = await client.RequestPasswordTokenAsync(req);
+            var tokenResponse = await client.RequestPasswordTokenAsync(req).ConfigureAwait(false);
 
             if (tokenResponse.IsError)
             {
@@ -97,11 +97,11 @@ namespace Portal.Repositories
             var dataJson = JsonSerializer.Serialize(clientApi);
             var stringContent = new StringContent(dataJson, Encoding.UTF8, "application/json");
 
-            var response = await apiClient.PostAsync(IdentityEndpoint.ClientUri, stringContent);
+            var response = await apiClient.PostAsync(IdentityEndpoint.ClientUri, stringContent).ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)
             {
-                var resDeserialize = await JsonHelper.Deserialize<ClientApiDto>(response, defaultOptions);
+                var resDeserialize = await JsonHelper.Deserialize<ClientApiDto>(response, defaultOptions).ConfigureAwait(false);
                 clientApi.Id = resDeserialize.Id;
             }
             return response.IsSuccessStatusCode;
@@ -186,11 +186,11 @@ namespace Portal.Repositories
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> CreateClientSecret(int? id, ClientSecretDto secret)
+        public async Task<bool> CreateClientSecret(int? id, ClientSecret secret)
         {
             // discover endpoints from metadata
             var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery);
+            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery).ConfigureAwait(false);
             if (disco.IsError)
             {
                 return false;
@@ -207,7 +207,7 @@ namespace Portal.Repositories
                 UserName = IdentityEndpoint.UserName,
                 Password = IdentityEndpoint.Password
             };
-            var tokenResponse = await client.RequestPasswordTokenAsync(req);
+            var tokenResponse = await client.RequestPasswordTokenAsync(req).ConfigureAwait(false);
 
             if (tokenResponse.IsError)
             {
@@ -220,7 +220,7 @@ namespace Portal.Repositories
             var dataJson = JsonSerializer.Serialize(secret);
             var stringContent = new StringContent(dataJson, Encoding.UTF8, "application/json");
 
-            var response = await apiClient.PostAsync(IdentityEndpoint.ClientUri + $"/{id.Value}/Secrets", stringContent);
+            var response = await apiClient.PostAsync(IdentityEndpoint.ClientUri + $"/{id.Value}/Secrets", stringContent).ConfigureAwait(false);
 
             return response.IsSuccessStatusCode;
         }
@@ -229,7 +229,7 @@ namespace Portal.Repositories
         {
             // discover endpoints from metadata
             var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery);
+            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery).ConfigureAwait(false);
             if (disco.IsError)
             {
                 return false;
@@ -246,7 +246,7 @@ namespace Portal.Repositories
                 UserName = IdentityEndpoint.UserName,
                 Password = IdentityEndpoint.Password
             };
-            var tokenResponse = await client.RequestPasswordTokenAsync(req);
+            var tokenResponse = await client.RequestPasswordTokenAsync(req).ConfigureAwait(false);
 
             if (tokenResponse.IsError)
             {
@@ -259,7 +259,7 @@ namespace Portal.Repositories
             var dataJson = JsonSerializer.Serialize(property);
             var stringContent = new StringContent(dataJson, Encoding.UTF8, "application/json");
 
-            var response = await apiClient.PostAsync(IdentityEndpoint.ResourceUri + $"/{id.Value}/Properties", stringContent);
+            var response = await apiClient.PostAsync(IdentityEndpoint.ResourceUri + $"/{id.Value}/Properties", stringContent).ConfigureAwait(false);
 
             return response.IsSuccessStatusCode;
         }
@@ -268,7 +268,7 @@ namespace Portal.Repositories
         {
             // discover endpoints from metadata
             var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery);
+            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery).ConfigureAwait(false);
             if (disco.IsError)
             {
                 return false;
@@ -285,7 +285,7 @@ namespace Portal.Repositories
                 UserName = IdentityEndpoint.UserName,
                 Password = IdentityEndpoint.Password
             };
-            var tokenResponse = await client.RequestPasswordTokenAsync(req);
+            var tokenResponse = await client.RequestPasswordTokenAsync(req).ConfigureAwait(false);
 
             if (tokenResponse.IsError)
             {
@@ -298,7 +298,7 @@ namespace Portal.Repositories
             var dataJson = JsonSerializer.Serialize(scope);
             var stringContent = new StringContent(dataJson, Encoding.UTF8, "application/json");
 
-            var response = await apiClient.PostAsync(IdentityEndpoint.ResourceUri + $"/{id.Value}/Scopes", stringContent);
+            var response = await apiClient.PostAsync(IdentityEndpoint.ResourceUri + $"/{id.Value}/Scopes", stringContent).ConfigureAwait(false);
 
             return response.IsSuccessStatusCode;
         }
@@ -307,7 +307,7 @@ namespace Portal.Repositories
         {
             // discover endpoints from metadata
             var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery);
+            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery).ConfigureAwait(false);
             if (disco.IsError)
             {
                 return false;
@@ -324,7 +324,7 @@ namespace Portal.Repositories
                 UserName = IdentityEndpoint.UserName,
                 Password = IdentityEndpoint.Password
             };
-            var tokenResponse = await client.RequestPasswordTokenAsync(req);
+            var tokenResponse = await client.RequestPasswordTokenAsync(req).ConfigureAwait(false);
 
             if (tokenResponse.IsError)
             {
@@ -337,7 +337,7 @@ namespace Portal.Repositories
             var dataJson = JsonSerializer.Serialize(secret);
             var stringContent = new StringContent(dataJson, Encoding.UTF8, "application/json");
 
-            var response = await apiClient.PostAsync(IdentityEndpoint.ResourceUri + $"/{id.Value}/Secrets", stringContent);
+            var response = await apiClient.PostAsync(IdentityEndpoint.ResourceUri + $"/{id.Value}/Secrets", stringContent).ConfigureAwait(false);
 
             return response.IsSuccessStatusCode;
         }
@@ -346,7 +346,7 @@ namespace Portal.Repositories
         {
             // discover endpoints from metadata
             var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery);
+            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery).ConfigureAwait(false);
             if (disco.IsError)
             {
                 return new APIResource();
@@ -363,7 +363,7 @@ namespace Portal.Repositories
                 UserName = IdentityEndpoint.UserName,
                 Password = IdentityEndpoint.Password
             };
-            var tokenResponse = await client.RequestPasswordTokenAsync(req);
+            var tokenResponse = await client.RequestPasswordTokenAsync(req).ConfigureAwait(false);
 
             if (tokenResponse.IsError)
             {
@@ -373,11 +373,11 @@ namespace Portal.Repositories
             var apiClient = new HttpClient();
             apiClient.SetBearerToken(tokenResponse.AccessToken);
 
-            var response = await apiClient.GetAsync($"{IdentityEndpoint.ResourceUri}/{id}");
+            var response = await apiClient.GetAsync($"{IdentityEndpoint.ResourceUri}/{id}").ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)
             {
-                var resDeserialize = await JsonHelper.Deserialize<APIResource>(response, defaultOptions);
+                var resDeserialize = await JsonHelper.Deserialize<APIResource>(response, defaultOptions).ConfigureAwait(false);
                 return resDeserialize;
             }
             return new APIResource();
@@ -387,7 +387,7 @@ namespace Portal.Repositories
         {
             // discover endpoints from metadata
             var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery);
+            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery).ConfigureAwait(false);
             if (disco.IsError)
             {
                 return new ClientApiDto();
@@ -404,7 +404,7 @@ namespace Portal.Repositories
                 UserName = IdentityEndpoint.UserName,
                 Password = IdentityEndpoint.Password
             };
-            var tokenResponse = await client.RequestPasswordTokenAsync(req);
+            var tokenResponse = await client.RequestPasswordTokenAsync(req).ConfigureAwait(false);
 
             if (tokenResponse.IsError)
             {
@@ -414,11 +414,11 @@ namespace Portal.Repositories
             var apiClient = new HttpClient();
             apiClient.SetBearerToken(tokenResponse.AccessToken);
 
-            var response = await apiClient.GetAsync($"{IdentityEndpoint.ClientUri}/{id}");
+            var response = await apiClient.GetAsync($"{IdentityEndpoint.ClientUri}/{id}").ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)
             {
-                var resDeserialize = await JsonHelper.Deserialize<ClientApiDto>(response, defaultOptions);
+                var resDeserialize = await JsonHelper.Deserialize<ClientApiDto>(response, defaultOptions).ConfigureAwait(false);
                 return resDeserialize;
             }
             return new ClientApiDto();
@@ -428,7 +428,7 @@ namespace Portal.Repositories
         {
             // discover endpoints from metadata
             var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery);
+            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery).ConfigureAwait(false);
             if (disco.IsError)
             {
                 return new IdentityResourcesDto();
@@ -445,7 +445,7 @@ namespace Portal.Repositories
                 UserName = IdentityEndpoint.UserName,
                 Password = IdentityEndpoint.Password
             };
-            var tokenResponse = await client.RequestPasswordTokenAsync(req);
+            var tokenResponse = await client.RequestPasswordTokenAsync(req).ConfigureAwait(false);
 
             if (tokenResponse.IsError)
             {
@@ -465,11 +465,11 @@ namespace Portal.Repositories
                 Uri = $"{IdentityEndpoint.IdentityResourceUri}?page={page}&pageSize={pageSize}";
             }
 
-            var response = await apiClient.GetAsync(Uri);
+            var response = await apiClient.GetAsync(Uri).ConfigureAwait(false);
 
             if (response.IsSuccessStatusCode)
             {
-                var resDeserialize = await JsonHelper.Deserialize<IdentityResourcesDto>(response, defaultOptions);
+                var resDeserialize = await JsonHelper.Deserialize<IdentityResourcesDto>(response, defaultOptions).ConfigureAwait(false);
                 return resDeserialize;
             }
             return new IdentityResourcesDto();
@@ -479,7 +479,7 @@ namespace Portal.Repositories
         {
             // discover endpoints from metadata
             var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery);
+            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery).ConfigureAwait(false);
             if (disco.IsError)
             {
                 return false;
@@ -496,7 +496,7 @@ namespace Portal.Repositories
                 UserName = IdentityEndpoint.UserName,
                 Password = IdentityEndpoint.Password
             };
-            var tokenResponse = await client.RequestPasswordTokenAsync(req);
+            var tokenResponse = await client.RequestPasswordTokenAsync(req).ConfigureAwait(false);
 
             if (tokenResponse.IsError)
             {
@@ -506,7 +506,7 @@ namespace Portal.Repositories
             var apiClient = new HttpClient();
             apiClient.SetBearerToken(tokenResponse.AccessToken);
 
-            var response = await apiClient.DeleteAsync(IdentityEndpoint.ClientUri + $"/{id.Value}");
+            var response = await apiClient.DeleteAsync(IdentityEndpoint.ClientUri + $"/{id.Value}").ConfigureAwait(false);
 
             return response.IsSuccessStatusCode;
         }
@@ -515,7 +515,7 @@ namespace Portal.Repositories
         {
             // discover endpoints from metadata
             var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery);
+            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery).ConfigureAwait(false);
             if (disco.IsError)
             {
                 return false;
@@ -532,7 +532,7 @@ namespace Portal.Repositories
                 UserName = IdentityEndpoint.UserName,
                 Password = IdentityEndpoint.Password
             };
-            var tokenResponse = await client.RequestPasswordTokenAsync(req);
+            var tokenResponse = await client.RequestPasswordTokenAsync(req).ConfigureAwait(false);
 
             if (tokenResponse.IsError)
             {
@@ -542,7 +542,7 @@ namespace Portal.Repositories
             var apiClient = new HttpClient();
             apiClient.SetBearerToken(tokenResponse.AccessToken);
 
-            var response = await apiClient.DeleteAsync(IdentityEndpoint.ClientUri + $"/Claims/{id.Value}");
+            var response = await apiClient.DeleteAsync(IdentityEndpoint.ClientUri + $"/Claims/{id.Value}").ConfigureAwait(false);
 
             return response.IsSuccessStatusCode;
         }
@@ -551,7 +551,7 @@ namespace Portal.Repositories
         {
             // discover endpoints from metadata
             var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery);
+            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery).ConfigureAwait(false);
             if (disco.IsError)
             {
                 return false;
@@ -568,7 +568,7 @@ namespace Portal.Repositories
                 UserName = IdentityEndpoint.UserName,
                 Password = IdentityEndpoint.Password
             };
-            var tokenResponse = await client.RequestPasswordTokenAsync(req);
+            var tokenResponse = await client.RequestPasswordTokenAsync(req).ConfigureAwait(false);
 
             if (tokenResponse.IsError)
             {
@@ -578,7 +578,7 @@ namespace Portal.Repositories
             var apiClient = new HttpClient();
             apiClient.SetBearerToken(tokenResponse.AccessToken);
 
-            var response = await apiClient.DeleteAsync(IdentityEndpoint.ClientUri + $"/Properties/{id.Value}");
+            var response = await apiClient.DeleteAsync(IdentityEndpoint.ClientUri + $"/Properties/{id.Value}").ConfigureAwait(false);
 
             return response.IsSuccessStatusCode;
         }
@@ -587,7 +587,7 @@ namespace Portal.Repositories
         {
             // discover endpoints from metadata
             var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery);
+            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery).ConfigureAwait(false);
             if (disco.IsError)
             {
                 return false;
@@ -604,7 +604,7 @@ namespace Portal.Repositories
                 UserName = IdentityEndpoint.UserName,
                 Password = IdentityEndpoint.Password
             };
-            var tokenResponse = await client.RequestPasswordTokenAsync(req);
+            var tokenResponse = await client.RequestPasswordTokenAsync(req).ConfigureAwait(false);
 
             if (tokenResponse.IsError)
             {
@@ -614,7 +614,7 @@ namespace Portal.Repositories
             var apiClient = new HttpClient();
             apiClient.SetBearerToken(tokenResponse.AccessToken);
 
-            var response = await apiClient.DeleteAsync(IdentityEndpoint.ClientUri + $"/Secrets/{id.Value}");
+            var response = await apiClient.DeleteAsync(IdentityEndpoint.ClientUri + $"/Secrets/{id.Value}").ConfigureAwait(false);
 
             return response.IsSuccessStatusCode;
         }
@@ -623,7 +623,7 @@ namespace Portal.Repositories
         {
             // discover endpoints from metadata
             var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery);
+            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery).ConfigureAwait(false);
             if (disco.IsError)
             {
                 return false;
@@ -640,7 +640,7 @@ namespace Portal.Repositories
                 UserName = IdentityEndpoint.UserName,
                 Password = IdentityEndpoint.Password
             };
-            var tokenResponse = await client.RequestPasswordTokenAsync(req);
+            var tokenResponse = await client.RequestPasswordTokenAsync(req).ConfigureAwait(false);
 
             if (tokenResponse.IsError)
             {
@@ -650,7 +650,7 @@ namespace Portal.Repositories
             var apiClient = new HttpClient();
             apiClient.SetBearerToken(tokenResponse.AccessToken);
 
-            var response = await apiClient.DeleteAsync(IdentityEndpoint.ResourceUri + $"/{id.Value}");
+            var response = await apiClient.DeleteAsync(IdentityEndpoint.ResourceUri + $"/{id.Value}").ConfigureAwait(false);
 
             return response.IsSuccessStatusCode;
         }
@@ -659,7 +659,7 @@ namespace Portal.Repositories
         {
             // discover endpoints from metadata
             var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery);
+            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery).ConfigureAwait(false);
             if (disco.IsError)
             {
                 return false;
@@ -676,7 +676,7 @@ namespace Portal.Repositories
                 UserName = IdentityEndpoint.UserName,
                 Password = IdentityEndpoint.Password
             };
-            var tokenResponse = await client.RequestPasswordTokenAsync(req);
+            var tokenResponse = await client.RequestPasswordTokenAsync(req).ConfigureAwait(false);
 
             if (tokenResponse.IsError)
             {
@@ -686,7 +686,7 @@ namespace Portal.Repositories
             var apiClient = new HttpClient();
             apiClient.SetBearerToken(tokenResponse.AccessToken);
 
-            var response = await apiClient.DeleteAsync(IdentityEndpoint.ResourceUri + $"/Properties/{id.Value}");
+            var response = await apiClient.DeleteAsync(IdentityEndpoint.ResourceUri + $"/Properties/{id.Value}").ConfigureAwait(false);
 
             return response.IsSuccessStatusCode;
         }
@@ -695,7 +695,7 @@ namespace Portal.Repositories
         {
             // discover endpoints from metadata
             var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery);
+            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery).ConfigureAwait(false);
             if (disco.IsError)
             {
                 return false;
@@ -712,7 +712,7 @@ namespace Portal.Repositories
                 UserName = IdentityEndpoint.UserName,
                 Password = IdentityEndpoint.Password
             };
-            var tokenResponse = await client.RequestPasswordTokenAsync(req);
+            var tokenResponse = await client.RequestPasswordTokenAsync(req).ConfigureAwait(false);
 
             if (tokenResponse.IsError)
             {
@@ -722,7 +722,7 @@ namespace Portal.Repositories
             var apiClient = new HttpClient();
             apiClient.SetBearerToken(tokenResponse.AccessToken);
 
-            var response = await apiClient.DeleteAsync(IdentityEndpoint.ResourceUri + $"/{id.Value}/Scopes/{scopeid.Value}");
+            var response = await apiClient.DeleteAsync(IdentityEndpoint.ResourceUri + $"/{id.Value}/Scopes/{scopeid.Value}").ConfigureAwait(false);
 
             return response.IsSuccessStatusCode;
         }
@@ -731,7 +731,7 @@ namespace Portal.Repositories
         {
             // discover endpoints from metadata
             var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery);
+            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery).ConfigureAwait(false);
             if (disco.IsError)
             {
                 return false;
@@ -748,7 +748,7 @@ namespace Portal.Repositories
                 UserName = IdentityEndpoint.UserName,
                 Password = IdentityEndpoint.Password
             };
-            var tokenResponse = await client.RequestPasswordTokenAsync(req);
+            var tokenResponse = await client.RequestPasswordTokenAsync(req).ConfigureAwait(false);
 
             if (tokenResponse.IsError)
             {
@@ -758,7 +758,7 @@ namespace Portal.Repositories
             var apiClient = new HttpClient();
             apiClient.SetBearerToken(tokenResponse.AccessToken);
 
-            var response = await apiClient.DeleteAsync(IdentityEndpoint.ResourceUri + $"/Secrets/{id.Value}");
+            var response = await apiClient.DeleteAsync(IdentityEndpoint.ResourceUri + $"/Secrets/{id.Value}").ConfigureAwait(false);
 
             return response.IsSuccessStatusCode;
         }
@@ -767,7 +767,7 @@ namespace Portal.Repositories
         {
             // discover endpoints from metadata
             var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery);
+            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery).ConfigureAwait(false);
             if (disco.IsError)
             {
                 return false;
@@ -784,7 +784,7 @@ namespace Portal.Repositories
                 UserName = IdentityEndpoint.UserName,
                 Password = IdentityEndpoint.Password
             };
-            var tokenResponse = await client.RequestPasswordTokenAsync(req);
+            var tokenResponse = await client.RequestPasswordTokenAsync(req).ConfigureAwait(false);
 
             if (tokenResponse.IsError)
             {
@@ -797,7 +797,7 @@ namespace Portal.Repositories
             var dataJson = JsonSerializer.Serialize(clientApi);
             var stringContent = new StringContent(dataJson, Encoding.UTF8, "application/json");
 
-            var response = await apiClient.PutAsync(IdentityEndpoint.ClientUri, stringContent);
+            var response = await apiClient.PutAsync(IdentityEndpoint.ClientUri, stringContent).ConfigureAwait(false);
 
             return response.IsSuccessStatusCode;
         }
@@ -806,7 +806,7 @@ namespace Portal.Repositories
         {
             // discover endpoints from metadata
             var client = new HttpClient();
-            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery);
+            var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery).ConfigureAwait(false);
             if (disco.IsError)
             {
                 return false;
@@ -823,7 +823,7 @@ namespace Portal.Repositories
                 UserName = IdentityEndpoint.UserName,
                 Password = IdentityEndpoint.Password
             };
-            var tokenResponse = await client.RequestPasswordTokenAsync(req);
+            var tokenResponse = await client.RequestPasswordTokenAsync(req).ConfigureAwait(false);
 
             if (tokenResponse.IsError)
             {
@@ -836,7 +836,7 @@ namespace Portal.Repositories
             var dataJson = JsonSerializer.Serialize(resourceApiDto);
             var stringContent = new StringContent(dataJson, Encoding.UTF8, "application/json");
 
-            var response = await apiClient.PutAsync(IdentityEndpoint.ResourceUri, stringContent);
+            var response = await apiClient.PutAsync(IdentityEndpoint.ResourceUri, stringContent).ConfigureAwait(false);
 
             return response.IsSuccessStatusCode;
         }
@@ -848,6 +848,8 @@ namespace Portal.Repositories
         public List<SelectListItem> allowedScopes { get; set; }
         public List<SelectListItem> redirectUris { get; set; }
         public List<SelectListItem> allowedGrantTypes { get; set; }
+        public List<SelectListItem> PostLogoutRedirectUris { get; set; }
+        public List<SelectListItem> IdentityRetrict { get; set; }
     }
     public class UpdateApiResource
     {

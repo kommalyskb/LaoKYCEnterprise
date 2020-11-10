@@ -41,5 +41,13 @@ namespace Shared.Configs
                 return "query";
             }
         }
+
+        public static string AppSecretQuery
+        {
+            get
+            {
+                return "query";
+            }
+        }
     }
 }

@@ -35,7 +35,7 @@ namespace Tests
         [Fact(DisplayName = "ສະແດງລາຍການ Apps(grant) ທັງຫມົດທີ່ມີ")]
         public async Task ListAllClients()
         {
-            var result = await myGrant.ListAll();
+            var result = await myGrant.ListAll().ConfigureAwait(false);
 
             Assert.NotNull(result);
         }
@@ -45,7 +45,7 @@ namespace Tests
         [InlineData("", 0, 20, 0)]
         public async Task ListAllClientsBelongtoUser(string userid, int? expected, int? limit, int? page)
         {
-            var result = await myGrant.ListAll(userid, limit, page);
+            var result = await myGrant.ListAll(userid, limit, page).ConfigureAwait(false);
             Assert.Equal(expected, result.Count);
         }
 
@@ -54,7 +54,7 @@ namespace Tests
         public async Task RemoveClientApp(string id, string rev)
         {
 
-            var result = await myGrant.RemoveGrant(id, rev);
+            var result = await myGrant.RemoveGrant(id, rev).ConfigureAwait(false);
 
             Assert.True(result);
         }

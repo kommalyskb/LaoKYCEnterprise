@@ -33,7 +33,7 @@ namespace Portal.Repositories
                 return false;
             }
 
-            var result = await couchContext.InsertAsync<GrantTypes>(couchDbHelper, grantTypes);
+            var result = await couchContext.InsertAsync<GrantTypes>(couchDbHelper, grantTypes).ConfigureAwait(false);
 
             return result.IsSuccess;
         }
@@ -49,7 +49,7 @@ namespace Portal.Repositories
                     0,
                     false,
                     false
-                );
+                ).ConfigureAwait(false);
 
             if (result.Rows != null)
             {
@@ -75,7 +75,7 @@ namespace Portal.Repositories
             }
 
             // Get App ID from couchdb
-            var appRes = await couchContext.GetAsync<GrantTypeDto>(couchDbHelper, id);
+            var appRes = await couchContext.GetAsync<GrantTypeDto>(couchDbHelper, id).ConfigureAwait(false);
             System.Threading.Thread.Sleep(500);
             if (!appRes.IsSuccess)
             {
@@ -83,7 +83,7 @@ namespace Portal.Repositories
             }
             else
             {
-                var result = await couchContext.DeleteAsync(couchDbHelper, id, rev);
+                var result = await couchContext.DeleteAsync(couchDbHelper, id, rev).ConfigureAwait(false);
                 return result.IsSuccess;
             }
         }
@@ -95,7 +95,7 @@ namespace Portal.Repositories
                 return false;
             }
 
-            var result = await couchContext.EditAsync<GrantTypeDto>(couchDbHelper, grantTypeDto);
+            var result = await couchContext.EditAsync<GrantTypeDto>(couchDbHelper, grantTypeDto).ConfigureAwait(false);
             return result.IsSuccess;
         }
     }

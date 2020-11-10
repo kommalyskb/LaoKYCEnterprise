@@ -36,7 +36,7 @@ namespace Portal.Repositories
                     0,
                     false,
                     false
-                );
+                ).ConfigureAwait(false);
 
             if (result.Rows != null)
             {
@@ -62,7 +62,7 @@ namespace Portal.Repositories
         {
             if (userId == string.Empty)
             {
-                return await Task.FromResult(new List<AppClientDto>());
+                return await Task.FromResult(new List<AppClientDto>()).ConfigureAwait(false);
             }
 
             int skip = limit.Value * page.Value;
@@ -75,7 +75,7 @@ namespace Portal.Repositories
                     skip,// skip = page * limit
                     false,
                     false
-                );
+                ).ConfigureAwait(false);
             if (result.Rows != null)
             {
                 return result.Rows.Select(x => new AppClientDto()
@@ -111,12 +111,12 @@ namespace Portal.Repositories
             var req = new ClientApiDto()
             { ClientId = appClient.ClientId, ClientName = appClient.ClientName, Description = appClient.Description };
 
-            var res = await apiLao.CreateClient(req);
+            var res = await apiLao.CreateClient(req).ConfigureAwait(false);
 
             if (res)
             {
                 appClient.AppID = req.Id;
-                var result = await couchContext.InsertAsync<AppClient>(couchDbHelper, appClient);
+                var result = await couchContext.InsertAsync<AppClient>(couchDbHelper, appClient).ConfigureAwait(false);
 
                 return result.IsSuccess;
             }
@@ -143,11 +143,11 @@ namespace Portal.Repositories
                 return false;
             }
 
-            var res = await apiLao.UpdateClient(clientApiDto);
+            var res = await apiLao.UpdateClient(clientApiDto).ConfigureAwait(false);
 
             if (res)
             {
-                var result = await couchContext.EditAsync<AppClientDto>(couchDbHelper, appClientDto);
+                var result = await couchContext.EditAsync<AppClientDto>(couchDbHelper, appClientDto).ConfigureAwait(false);
                 return result.IsSuccess;
             }
             return false;
@@ -163,7 +163,7 @@ namespace Portal.Repositories
             }
 
             // Get App ID from couchdb
-            var appRes = await couchContext.GetAsync<AppClientDto>(couchDbHelper, id);
+            var appRes = await couchContext.GetAsync<AppClientDto>(couchDbHelper, id).ConfigureAwait(false);
             System.Threading.Thread.Sleep(500);
             if (!appRes.IsSuccess)
             {
@@ -171,11 +171,11 @@ namespace Portal.Repositories
             }
             else
             {
-                var res = await apiLao.RemoveClient(appRes.Content.AppID);
+                var res = await apiLao.RemoveClient(appRes.Content.AppID).ConfigureAwait(false);
 
                 if (res)
                 {
-                    var result = await couchContext.DeleteAsync(couchDbHelper, id, rev);
+                    var result = await couchContext.DeleteAsync(couchDbHelper, id, rev).ConfigureAwait(false);
                     return result.IsSuccess;
                 }
             }
@@ -186,5 +186,7 @@ namespace Portal.Repositories
 
             //return result.IsSuccess;
         }
+
+
     }
 }

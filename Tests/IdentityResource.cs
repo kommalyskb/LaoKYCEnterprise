@@ -37,7 +37,7 @@ namespace Tests
         [Fact(DisplayName = "ສະແດງລາຍການ Identity Resource ທັງຫມົດທີ່ມີ")]
         public async Task ListAllIdentityRes()
         {
-            var result = await identityResource.ListAll();
+            var result = await identityResource.ListAll().ConfigureAwait(false);
 
             Assert.NotNull(result);
         }
@@ -54,7 +54,7 @@ namespace Tests
                 UserID = userid,
                 Created = created
             };
-            var result = await identityResource.CreateIdentityResource(req);
+            var result = await identityResource.CreateIdentityResource(req).ConfigureAwait(false);
 
             Assert.True(result);
         }
@@ -63,7 +63,7 @@ namespace Tests
         [ClassData(typeof(IdentResourceTest))]
         public async Task UpdateResource(IdentityResourcesDto param)
         {
-            var result = await identityResource.UpdateIdentityResource(param);
+            var result = await identityResource.UpdateIdentityResource(param).ConfigureAwait(false);
 
             Assert.True(result);
         }
@@ -73,7 +73,7 @@ namespace Tests
         public async Task RemoveClientApp(string id, string rev)
         {
 
-            var result = await identityResource.RemoveIdentityResource(id, rev);
+            var result = await identityResource.RemoveIdentityResource(id, rev).ConfigureAwait(false);
 
             Assert.True(result);
         }

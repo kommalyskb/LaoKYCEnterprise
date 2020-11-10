@@ -36,7 +36,7 @@ namespace Portal.Repositories
                    0,
                    false,
                    false
-               );
+               ).ConfigureAwait(false);
 
             if (result.Rows != null)
             {
@@ -58,7 +58,7 @@ namespace Portal.Repositories
         {
             if (userId == string.Empty)
             {
-                return await Task.FromResult(new List<GrantsDto>());
+                return await Task.FromResult(new List<GrantsDto>()).ConfigureAwait(false);
             }
 
             int skip = limit.Value * page.Value;
@@ -71,7 +71,7 @@ namespace Portal.Repositories
                     skip,// skip = page * limit
                     false,
                     false
-                );
+                ).ConfigureAwait(false);
             if (result.Rows != null)
             {
                 return result.Rows.Select(x => new GrantsDto()
@@ -96,7 +96,7 @@ namespace Portal.Repositories
             }
 
             // Get App ID from couchdb
-            var appRes = await couchContext.GetAsync<GrantsDto>(couchDbHelper, id);
+            var appRes = await couchContext.GetAsync<GrantsDto>(couchDbHelper, id).ConfigureAwait(false);
             System.Threading.Thread.Sleep(500);
             if (!appRes.IsSuccess)
             {
@@ -104,7 +104,7 @@ namespace Portal.Repositories
             }
             else
             {
-                var result = await couchContext.DeleteAsync(couchDbHelper, id, rev);
+                var result = await couchContext.DeleteAsync(couchDbHelper, id, rev).ConfigureAwait(false);
                 return result.IsSuccess;
             }
 

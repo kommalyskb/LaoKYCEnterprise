@@ -20,6 +20,7 @@ namespace Tests
     {
         private readonly IAPILaoKYC apiKYC;
         private readonly IMyAppClient myAppClient;
+        private readonly IClientSecret clientSecret;
         private ICouchContext couchContext;
         private DBConfig dBConfig;
 
@@ -36,18 +37,15 @@ namespace Tests
                 Username = "admin"
             };
 
-
             apiKYC = new APILaoKYC();
-
-
-
             myAppClient = new MyAppClient(couchContext, dBConfig, apiKYC);
+            clientSecret = new MyClientSecret(couchContext, dBConfig, apiKYC);
         }
         
         [Fact(DisplayName = "ສະແດງລາຍການ Apps(Clients) ທັງຫມົດທີ່ມີ")]
         public async Task ListAllClients()
         {
-            var result = await myAppClient.ListAll();
+            var result = await myAppClient.ListAll().ConfigureAwait(false);
 
             Assert.NotNull(result);
         }
@@ -56,7 +54,7 @@ namespace Tests
         [InlineData("", 0, 20, 0)]
         public async Task ListAllClientsBelongtoUser(string userid, int? expected, int? limit, int? page)
         {
-            var result = await myAppClient.ListAll(userid, limit, page);
+            var result = await myAppClient.ListAll(userid, limit, page).ConfigureAwait(false);
 
             Assert.Equal(expected, result.Count);
         }
@@ -74,7 +72,7 @@ namespace Tests
                 Description = description,
                 UserID = userid
             };
-            var result = await myAppClient.CreateAppClient(req);
+            var result = await myAppClient.CreateAppClient(req).ConfigureAwait(false);
 
             Assert.True(result);
         }
@@ -84,7 +82,7 @@ namespace Tests
         [ClassData(typeof(UpdateClientDtoTest))]
         public async Task UpdateClientApp(UpdateClientTestCase param)
         {
-            var result = await myAppClient.UpdateAppClient(param.ClientApiDto, param.AppClientDto);
+            var result = await myAppClient.UpdateAppClient(param.ClientApiDto, param.AppClientDto).ConfigureAwait(false);
 
             Assert.True(result);
         }
@@ -94,9 +92,26 @@ namespace Tests
         public async Task RemoveClientApp(string id, string rev)
         {
             
-            var result = await myAppClient.RemoveClientApp(id, rev);
+            var result = await myAppClient.RemoveClientApp(id, rev).ConfigureAwait(false);
 
             Assert.True(result);
+        }
+        [Fact(DisplayName = "ສະແດງລາຍການ App Secrets ທັງຫມົດທີ່ມີ")]
+        public async Task ListAllClientSecret()
+        {
+            var result = await clientSecret.ListAll().ConfigureAwait(false);
+
+            Assert.NotNull(result);
+        }
+
+        [Theory(DisplayName = "ສະແດງລາຍການ Apps Secrets ທັງຫມົດທີມີ ຕາມ ຂອງ Users ທີ່ເປັນເຈົ້າຂອງ")]
+        [InlineData(15,"1qaz2wsx3edc4rfv", 1, 20, 0)]
+        [InlineData(0,"", 0, 20, 0)]
+        public async Task ListAllClientSecretBelongtoUser(int? appid,string userid, int? expected, int? limit, int? page)
+        {
+            var result = await clientSecret.ListAll(appid, userid, limit, page).ConfigureAwait(false);
+
+            Assert.Equal(expected, result.Count);
         }
 
         [Theory(DisplayName = "ສ້າງ App Secrets ຕາມຂໍ້ມູນທີ່ກຳຫນົດ ສຳເລັດ")]
@@ -108,7 +123,8 @@ namespace Tests
 
             var req = new ClientSecretDto(type, description, hash, expired);
 
-            var result = await apiKYC.CreateClientSecret(id, req);
+            //var result = await apiKYC.CreateClientSecret(id, req);
+            var result = await clientSecret.CreateClientSecret(req).ConfigureAwait(false);
 
             Assert.True(result);
         }
@@ -120,7 +136,7 @@ namespace Tests
 
             var req = new ClientPropertyApiDto(0, key, value);
 
-            var result = await apiKYC.CreateClientProperty(id, req);
+            var result = await apiKYC.CreateClientProperty(id, req).ConfigureAwait(false);
 
             Assert.True(result);
         }
@@ -132,16 +148,25 @@ namespace Tests
 
             var req = new ClientClaimApiDto(0, type, value);
 
-            var result = await apiKYC.CreateClientClaim(id, req);
+            var result = await apiKYC.CreateClientClaim(id, req).ConfigureAwait(false);
 
             Assert.True(result);
         }
 
         [Theory(DisplayName = "ລຶບ App Secrets ຕາມຂໍ້ມູນທີ່ກຳຫນົດ ສຳເລັດ")]
         [InlineData(2)]
+        public async Task DeleteClientSecrets(int id)
+        {
+            var result = await apiKYC.RemoveClientSecret(id).ConfigureAwait(false);
+
+            Assert.True(result);
+        }
+
+        [Theory(DisplayName = "ລຶບ App Claims ຕາມຂໍ້ມູນທີ່ກຳຫນົດ ສຳເລັດ")]
+        [InlineData(2)]
         public async Task DeleteClientClaim(int id)
         {
-            var result = await apiKYC.RemoveClientClaim(id);
+            var result = await apiKYC.RemoveClientClaim(id).ConfigureAwait(false);
 
             Assert.True(result);
         }
@@ -150,7 +175,7 @@ namespace Tests
         [InlineData(3)]
         public async Task DeleteClientProperty(int id)
         {
-            var result = await apiKYC.RemoveClientProperty(id);
+            var result = await apiKYC.RemoveClientProperty(id).ConfigureAwait(false);
 
             Assert.True(result);
         }

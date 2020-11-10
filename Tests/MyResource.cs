@@ -43,7 +43,7 @@ namespace Tests
         [Fact(DisplayName = "ສະແດງລາຍການ API(API Resources) ທັງຫມົດທີ່ມີ")]
         public async Task ListAllResource()
         {
-            var result = await myAPIResouce.ListAll();
+            var result = await myAPIResouce.ListAll().ConfigureAwait(false);
 
             Assert.NotNull(result);
         }
@@ -51,7 +51,7 @@ namespace Tests
         [InlineData("1qaz2wsx", 20, 0)]
         public async Task ListAllResourceBelongtoUser(string userid, int? limit, int? page)
         {
-            var result = await myAPIResouce.ListAll(userid, limit, page);
+            var result = await myAPIResouce.ListAll(userid, limit, page).ConfigureAwait(false);
 
             Assert.NotNull(result);
         }
@@ -69,7 +69,7 @@ namespace Tests
                 UserID = userid,
                 DisplayName = display
             };
-            var result = await myAPIResouce.CreateResource(req);
+            var result = await myAPIResouce.CreateResource(req).ConfigureAwait(false);
 
             Assert.True(result);
         }
@@ -79,7 +79,7 @@ namespace Tests
         [ClassData(typeof(UpdateResourceDtoTest))]
         public async Task UpdateResource(UpdateResourceTestCase param)
         {
-            var result = await myAPIResouce.UpdateResource(param.apiResourceApiDto, param.aPIResource);
+            var result = await myAPIResouce.UpdateResource(param.apiResourceApiDto, param.aPIResource).ConfigureAwait(false);
 
             Assert.True(result);
         }
@@ -89,7 +89,7 @@ namespace Tests
         public async Task RemoveResource(string id, string rev)
         {
 
-            var result = await myAPIResouce.RemoveResource(id, rev);
+            var result = await myAPIResouce.RemoveResource(id, rev).ConfigureAwait(false);
 
             Assert.True(result);
         }
@@ -103,7 +103,7 @@ namespace Tests
 
             var req = new ApiSecretApiDto(type, description, hash, expired);
 
-            var result = await apiKYC.CreateResourceSecret(id, req);
+            var result = await apiKYC.CreateResourceSecret(id, req).ConfigureAwait(false);
 
             Assert.True(result);
         }
@@ -115,7 +115,7 @@ namespace Tests
 
             var req = new ApiResourcePropertyApiDto(0, key, value);
 
-            var result = await apiKYC.CreateResourceProperty(id, req);
+            var result = await apiKYC.CreateResourceProperty(id, req).ConfigureAwait(false);
 
             Assert.True(result);
         }
@@ -132,7 +132,7 @@ namespace Tests
             };
             var req = new ApiScopeApiDto(0, name, display, description, true, true, true, userClaims);
 
-            var result = await apiKYC.CreateResourceScope(id, req);
+            var result = await apiKYC.CreateResourceScope(id, req).ConfigureAwait(false);
 
             Assert.True(result);
         }
@@ -141,7 +141,7 @@ namespace Tests
         [InlineData(2)]
         public async Task DeleteResourceSecret(int id)
         {
-            var result = await apiKYC.RemoveResourceSecret(id);
+            var result = await apiKYC.RemoveResourceSecret(id).ConfigureAwait(false);
 
             Assert.True(result);
         }
@@ -150,7 +150,7 @@ namespace Tests
         [InlineData(1)]
         public async Task DeleteResourceProperty(int id)
         {
-            var result = await apiKYC.RemoveResourceProperty(id);
+            var result = await apiKYC.RemoveResourceProperty(id).ConfigureAwait(false);
 
             Assert.True(result);
         }
@@ -159,7 +159,7 @@ namespace Tests
         [InlineData(7,3)]
         public async Task DeleteResourceScope(int id, int scopeid)
         {
-            var result = await apiKYC.RemoveResourceScope(id, scopeid);
+            var result = await apiKYC.RemoveResourceScope(id, scopeid).ConfigureAwait(false);
 
             Assert.True(result);
         }

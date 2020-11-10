@@ -2,6 +2,7 @@
 @model UpdateClientModel
 @{
     ViewData["Title"] = "Edit";
+    ViewData["console"] = "active";
 }
 @section Styles{
     <link href="~/assets/css/pages/wizard/wizard-1.css" rel="stylesheet" />
@@ -239,6 +240,7 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="d-flex justify-content-between border-top mt-5 pt-10"></div>
                                     <div class="form-group">
                                         <label>Allowed Scopes</label>
                                         <br />
@@ -251,16 +253,20 @@
                                         <select class="form-control selectTag" style="width:100%" multiple="multiple" asp-for="ClientApiDto.RedirectUris" asp-items="@Model.redirectUris"></select>
                                     </div>
                                     <div class="form-group">
-                                        <label class="font-size-h6 font-weight-bolder text-dark">Allowed Grant Types</label>
+                                        <label>Allowed Grant Types</label>
+                                        <br />
+                                        <select class="form-control select2" style="width:100%" asp-for="ClientApiDto.AllowedGrantTypes" asp-items="@Model.allowedGrantTypes"></select>
+                                    </div>
+                                    <div class="d-flex justify-content-between border-top mt-5 pt-10">
 
                                     </div>
-                                    <div class="form-group">
-                                        <label class="font-size-h6 font-weight-bolder text-dark">Client Secrets</label>
-                                        <button class="btn btn-primary">Manage Client Secrets</button>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="font-size-h6 font-weight-bolder text-dark">Properties</label>
-                                        <button class="btn btn-primary">Manage Client Properties</button>
+                                    <div class="form-group row">
+                                        <div class="col-md-3">
+                                            <a asp-action="secret" asp-controller="myapps" asp-route-id="@Model.ClientApiDto.Id" target="_blank" class="btn btn-primary">Manage Client Secrets</a>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <a asp-action="property" asp-controller="myapps" asp-route-id="@Model.ClientApiDto.Id" target="_blank" class="btn btn-success">Manage Client Properties</a>
+                                        </div>
                                     </div>
                                 </div>
                                 <!--end::Wizard Step 2-->
@@ -320,10 +326,14 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="font-size-h6 font-weight-bolder text-dark">Post Logout Redirect Uris</label>
+                                        <label>Post Logout Redirect Uris</label>
+                                        <br />
+                                        <select class="form-control selectTag" style="width:100%" multiple="multiple" asp-for="ClientApiDto.PostLogoutRedirectUris" asp-items="@Model.PostLogoutRedirectUris"></select>
                                     </div>
                                     <div class="form-group">
-                                        <label class="font-size-h6 font-weight-bolder text-dark">dentity Provider Restrictions</label>
+                                        <label>Identity Provider Restrictions</label>
+                                        <br />
+                                        <select class="form-control selectTag" style="width:100%" multiple="multiple" asp-for="ClientApiDto.IdentityProviderRestrictions" asp-items="@Model.IdentityRetrict"></select>
                                     </div>
                                 </div>
                                 <!--end::Wizard Step 3-->
@@ -741,7 +751,7 @@
         jQuery(document).ready(function () {
             KTWizard1.init();
             $('.select2').select2();
-            $('.selectTag').select2({ tags: true});
+            $('.selectTag').select2({ tags: true });
         });
 
           //begin submit form

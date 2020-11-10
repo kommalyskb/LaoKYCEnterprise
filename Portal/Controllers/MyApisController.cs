@@ -55,7 +55,7 @@ namespace Portal.Controllers
                     
                     resource.UserID = UserId;
                     resource.Created = string.Format("{0:yyyy-MM-dd HH:mm:ss}", DateTime.Now);
-                    var result = await myAPIResouce.CreateResource(resource);
+                    var result = await myAPIResouce.CreateResource(resource).ConfigureAwait(false);
                     if (result)
                     {
                         return Json(new { Code = 200, Message = "Sucess", Id = resource.ResID });
@@ -77,7 +77,7 @@ namespace Portal.Controllers
         public async Task<IActionResult> Edit(APIResource resource)
         {
             //Query from api KYC
-            var resultClient = await apiKYC.QueryAPI(resource.ResID);
+            var resultClient = await apiKYC.QueryAPI(resource.ResID).ConfigureAwait(false);
 
             UpdateApiResource model = new UpdateApiResource()
             {
@@ -88,7 +88,7 @@ namespace Portal.Controllers
         [HttpPost]
         public async Task<IActionResult> Edit(UpdateApiResource param)
         {
-            var result = await myAPIResouce.UpdateResource(param.apiResourceApiDto, param.aPIResource);
+            var result = await myAPIResouce.UpdateResource(param.apiResourceApiDto, param.aPIResource).ConfigureAwait(false);
             return View();
         }
         [HttpPost]
@@ -98,7 +98,7 @@ namespace Portal.Controllers
             {
                 try
                 {
-                    var result = await myAPIResouce.RemoveResource(id: id, rev: rev);
+                    var result = await myAPIResouce.RemoveResource(id: id, rev: rev).ConfigureAwait(false);
                     if (result)
                     {
                         return Json(new { Code = 200, Message = "Delete success." });
