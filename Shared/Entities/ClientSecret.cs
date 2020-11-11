@@ -7,7 +7,7 @@ namespace Shared.Entities
 {
     public class ClientSecret
     {
-        public ClientSecret(string type, string description, string value, DateTime? expired)
+        public ClientSecret(string type, string description, string value, string expired)
         {
             this.type = type;
             this.value = value;
@@ -19,7 +19,7 @@ namespace Shared.Entities
 
         }
         [JsonProperty("appid")]
-        public int? AppID { get; set; }
+        public string AppID { get; set; }
         [JsonProperty("secretid")]
         public int SecretId { get; set; }
         [JsonProperty("type")]
@@ -31,6 +31,6 @@ namespace Shared.Entities
         [JsonProperty("hashtype")]
         public string hashtype { get; set; }
         [JsonProperty("expiration")]
-        public DateTime? expiration { get; set; }
+        public string expiration { get; set; }
     }
 }

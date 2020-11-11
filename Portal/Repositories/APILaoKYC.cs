@@ -186,14 +186,14 @@ namespace Portal.Repositories
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<bool> CreateClientSecret(int? id, ClientSecret secret)
+        public async Task<int> CreateClientSecret(string id, ClientSecret secret)
         {
             // discover endpoints from metadata
             var client = new HttpClient();
             var disco = await client.GetDiscoveryDocumentAsync(IdentityEndpoint.Discovery).ConfigureAwait(false);
             if (disco.IsError)
             {
-                return false;
+                return new int();
             }
 
             // request token
@@ -211,7 +211,7 @@ namespace Portal.Repositories
 
             if (tokenResponse.IsError)
             {
-                return false;
+                return new int();
             }
 
             var apiClient = new HttpClient();
@@ -220,9 +220,19 @@ namespace Portal.Repositories
             var dataJson = JsonSerializer.Serialize(secret);
             var stringContent = new StringContent(dataJson, Encoding.UTF8, "application/json");
 
-            var response = await apiClient.PostAsync(IdentityEndpoint.ClientUri + $"/{id.Value}/Secrets", stringContent).ConfigureAwait(false);
+            var response = await apiClient.PostAsync(IdentityEndpoint.ClientUri + $"/{id}/Secrets", stringContent).ConfigureAwait(false);
 
-            return response.IsSuccessStatusCode;
+            if (response.IsSuccessStatusCode)
+            {
+                var responseSecret = await apiClient.GetAsync($"{IdentityEndpoint.ClientUri}/{id}/Secrets?page=1&pageSize=10").ConfigureAwait(false);
+
+                if (responseSecret.IsSuccessStatusCode)
+                {
+                    var resDeserialize = await JsonHelper.Deserialize<ListClientSecret>(responseSecret, defaultOptions).ConfigureAwait(false);
+                    return resDeserialize.clientSecrets.Max(x => x.id); //Return max id
+                }
+            }
+            return new int();
         }
 
         public async Task<bool> CreateResourceProperty(int? id, ApiResourcePropertyApiDto property)

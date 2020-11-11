@@ -8,7 +8,7 @@ namespace Shared.DTOs
 {
     public class ClientSecretDto : ClientSecret
     {
-        public ClientSecretDto(string type, string description, string value, DateTime? expired)
+        public ClientSecretDto(string type, string description, string value, string expired)
         {
             this.type = type;
             this.value = value;
@@ -26,6 +26,27 @@ namespace Shared.DTOs
         public string UserID { get; set; }
         [JsonProperty("_rev")]
         public string Revision { get; set; }
+        [JsonProperty("created")]
+        public string Created { get; set; } // Date record created
     }
+
+
+    public class ListClientSecret
+    {
+        public int totalCount { get; set; }
+        public int pageSize { get; set; }
+        public List<Clientsecret> clientSecrets { get; set; }
+    }
+
+    public class Clientsecret
+    {
+        public string type { get; set; }
+        public int id { get; set; }
+        public string description { get; set; }
+        public string value { get; set; }
+        public DateTime expiration { get; set; }
+    }
+
+
 
 }

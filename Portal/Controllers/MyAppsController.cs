@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -234,9 +235,45 @@ namespace Portal.Controllers
             limit = limit ?? 20;
             page = page ?? 0;
             string UserId = User.Claims.Where(x => x.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value;
+            ViewData["AppID"] = id;
 
             var result = await clientSecret.ListAll(id,UserId, limit, page).ConfigureAwait(false);
             return View(result.ToList());
+        }
+        [HttpPost]
+        public async Task<IActionResult> Secret(ClientSecretDto appClient)
+        {
+            if (appClient != null)
+            {
+                try
+                {
+                    string UserId = User.Claims.Where(x => x.Type == ClaimTypes.NameIdentifier).FirstOrDefault().Value;
+                    appClient.UserID = UserId;
+                    appClient.Created = string.Format("{0:yyyy-MM-dd HH:mm:ss}", DateTime.Now);
+
+                    if (appClient.expiration != "")
+                    {
+                        var expireDate = DateTime.ParseExact(appClient.expiration, "MM/dd/yyyy", CultureInfo.InvariantCulture);
+                        appClient.expiration = $"{expireDate.ToUniversalTime():s}Z";
+                    }
+                    var result = await clientSecret.CreateClientSecret(appClient).ConfigureAwait(false);
+                    if (result)
+                    {
+                        return Json(new { Code = 200, Message = "Sucess", Id = appClient.AppID });
+                    }
+                    else
+                    {
+                        return Json(new { Code = 400, Message = "Fail" });
+                    }
+
+                }
+                catch (Exception ex)
+                {
+                    return Json(new { Code = 501, Message = ex.Message });
+                }
+
+            }
+            return Json(new { Code = 400, Message = "Your input is null" });
         }
 
     }

@@ -37,12 +37,14 @@ namespace Portal.Repositories
             var req = new ClientSecret()
             { description = appClient.description,expiration = appClient.expiration,type= appClient.type,value = appClient.value };
 
-            var res = await apiLao.CreateClientSecret(appClient.SecretId,req).ConfigureAwait(false);
+            var res = await apiLao.CreateClientSecret(appClient.AppID,req).ConfigureAwait(false);
 
-            if (res)
+            //res = ID Secret from identity
+            if (res > 0)
             {
-                appClient.SecretId = req.SecretId;
-                var result = await couchContext.InsertAsync<ClientSecret>(couchDbHelper, appClient).ConfigureAwait(false);
+                appClient.SecretId = res;
+                appClient.Id = null;
+                var result = await couchContext.InsertAsync<ClientSecretDto>(couchDbHelper, appClient).ConfigureAwait(false);
 
                 return result.IsSuccess;
             }
@@ -92,8 +94,8 @@ namespace Portal.Repositories
             int skip = limit.Value * page.Value;
             var result = await couchContext.ViewQueryAsync<ClientSecretDto>(
                     couchDBHelper: couchDbHelper,
-                    designName: DesignName.AppClientQuery,
-                    viewName: IndexName.AppClientQuery_List,
+                    designName: DesignName.AppSecretQuery,
+                    viewName: IndexName.AppSecretQuery_List,
                     appid.ToString(),
                     limit.Value,
                     skip,// skip = page * limit

@@ -119,7 +119,7 @@ namespace Tests
         public async Task CreateClientSecret(int id, string type, string description, string value)
         {
             string hash = value.Sha256();
-            DateTime? expired = DateTime.Now.AddMonths(1);
+            string expired = $"{DateTime.UtcNow.AddMonths(1):s}Z";
 
             var req = new ClientSecretDto(type, description, hash, expired);
 
