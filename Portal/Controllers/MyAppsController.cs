@@ -276,5 +276,32 @@ namespace Portal.Controllers
             return Json(new { Code = 400, Message = "Your input is null" });
         }
 
+        [HttpPost]
+        public async Task<IActionResult> DeleteSecret(string id, string rev,string scid)
+        {
+            if (id != null && id != "")
+            {
+                try
+                {
+                    var result = await clientSecret.RemoveSecret(id: id, rev: rev, scid).ConfigureAwait(false);
+                    if (result)
+                    {
+                        return Json(new { Code = 200, Message = "Delete success." });
+                    }
+                    else
+                    {
+                        return Json(new { Code = 501, Message = "Delete fail." });
+                    }
+                }
+                catch (Exception ex)
+                {
+
+                    return Json(new { Code = 501, Message = $"Delete fail: {ex.Message}." });
+                }
+
+            }
+            return Json(new { Code = 404, Message = "ID is not incorrect." });
+        }
+
     }
 }

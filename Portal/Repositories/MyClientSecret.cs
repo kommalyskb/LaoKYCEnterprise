@@ -122,7 +122,7 @@ namespace Portal.Repositories
             }
         }
 
-        public async Task<bool> RemoveClientApp(string id, string rev)
+        public async Task<bool> RemoveSecret(string id, string rev, string scid)
         {
             if (id == string.Empty)
             {

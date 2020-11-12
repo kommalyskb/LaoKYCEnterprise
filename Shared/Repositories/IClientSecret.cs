@@ -12,6 +12,6 @@ namespace Shared.Repositories
         Task<bool> CreateClientSecret(ClientSecretDto appClient);
         Task<List<ClientSecretDto>> ListAll();
         Task<List<ClientSecretDto>> ListAll(int? AppID, string userId, int? limit, int? page);
-        Task<bool> RemoveClientApp(string id, string rev);
+        Task<bool> RemoveSecret(string id, string rev,string scid);
     }
 }
